@@ -1,19 +1,17 @@
-using Autenticacao.Jwt.Application.Commands.v1.GenerateToken;
-using Autenticacao.Jwt.Application.Commands.v1.Users.CreateUser;
-using Autenticacao.Jwt.Application.Constants.v1;
-using Autenticacao.Jwt.Application.Services.v1;
-using Autenticacao.Jwt.Domain.Interfaces.v1.Patterns;
-using Autenticacao.Jwt.Domain.Interfaces.v1.Repositories;
-using Autenticacao.Jwt.Domain.Interfaces.v1.Services;
-using Autenticacao.Jwt.Filters.v1;
-using Autenticacao.Jwt.Infrastructure;
 using Autenticacao.Jwt.Infrastructure.Repositories.v1;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Store.Domain.Entities.v1.User.Application.Commands.v1.GenerateToken;
+using Store.User.Api.Filters.v1;
+using Store.User.Application.Commands.v1.Users.CreateUser;
+using Store.User.Application.Constants.v1;
+using Store.User.Application.Services.v1;
 using Store.User.CrossCutting.Configurations.v1;
+using Store.User.Domain.Interfaces.v1.Repositories;
+using Store.User.Domain.Interfaces.v1.Services;
 using System.Data;
 using System.Text;
 
@@ -63,7 +61,6 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IRedisService, RedisService>();
-builder.Services.AddTransient<IUnityOfWork, UnitOfWork>();
 builder.Services.AddTransient(typeof(IPasswordServices<>), typeof(PasswordService<>));
 builder.Services.AddTransient<FilterHeader>();
 
@@ -71,6 +68,8 @@ builder.Services.AddMediatR(
     new MediatRServiceConfiguration().RegisterServicesFromAssemblyContaining(typeof(GenerateTokenCommandHandler)));
 
 builder.Services.AddAutoMapper(opt => opt.AddMaps(typeof(CreateUserCommand).Assembly));
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services
     .AddAuthentication(x =>

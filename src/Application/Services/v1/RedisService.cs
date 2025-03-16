@@ -1,9 +1,9 @@
-﻿using Autenticacao.Jwt.Domain.Interfaces.v1.Services;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Store.User.CrossCutting.Configurations.v1;
+using Store.User.Domain.Interfaces.v1.Services;
 using System.Text.Json;
 
-namespace Autenticacao.Jwt.Application.Services.v1
+namespace Store.User.Application.Services.v1
 {
     public class RedisService(IDistributedCache cache, AppsettingsConfigurations appsettingsConfiguration) : IRedisService
     {

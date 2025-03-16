@@ -1,4 +1,4 @@
-﻿namespace Autenticacao.Jwt.Application.Commands.v1.GenerateToken
+﻿namespace Store.User.Application.Commands.v1.GenerateToken
 {
     public class GenerateTokenResponse
     {

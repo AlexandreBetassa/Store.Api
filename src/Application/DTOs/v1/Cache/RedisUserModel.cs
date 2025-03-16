@@ -1,4 +1,4 @@
-﻿namespace Autenticacao.Jwt.Application.DTOs.v1
+﻿namespace Store.User.Application.DTOs.v1.Cache
 {
     public class RedisUserModel
     {

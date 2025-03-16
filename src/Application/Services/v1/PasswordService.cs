@@ -1,7 +1,7 @@
-﻿using Autenticacao.Jwt.Domain.Interfaces.v1.Services;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Store.User.Domain.Interfaces.v1.Services;
 
-namespace Autenticacao.Jwt.Application.Services.v1
+namespace Store.User.Application.Services.v1
 {
     public class PasswordService<T> : IPasswordServices<T> where T : class
     {

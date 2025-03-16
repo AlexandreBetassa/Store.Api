@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace Autenticacao.Jwt.Application.Queries.v1.GetUser
+namespace Store.User.Application.Queries.v1.GetUser
 {
-    public class GetUserQuery(string name) : IRequest<GetUserQueryResponse>
+    public class GetUserQuery() : IRequest<GetUserQueryResponse>
     {
-        public string Name { get; set; } = name;
     }
 }

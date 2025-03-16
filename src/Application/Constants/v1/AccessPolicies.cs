@@ -1,4 +1,4 @@
-﻿namespace Autenticacao.Jwt.Application.Constants.v1
+﻿namespace Store.User.Application.Constants.v1
 {
     public struct AccessPolicies
     {

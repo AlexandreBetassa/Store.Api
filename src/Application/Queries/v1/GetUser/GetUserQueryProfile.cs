@@ -1,13 +1,13 @@
-﻿using Autenticacao.Jwt.Domain.Entities.v1;
-using AutoMapper;
+﻿using AutoMapper;
+using UserAccount = Store.User.Domain.Entities.v1.User;
 
-namespace Autenticacao.Jwt.Application.Queries.v1.GetUser
+namespace Store.User.Application.Queries.v1.GetUser
 {
     public class GetUserQueryProfile : Profile
     {
         public GetUserQueryProfile()
         {
-            CreateMap<User, GetUserQueryResponse>(MemberList.Destination);
+            CreateMap<UserAccount, GetUserQueryResponse>(MemberList.Destination);
         }
     }
 }

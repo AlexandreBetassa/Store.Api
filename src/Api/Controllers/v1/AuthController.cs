@@ -1,36 +1,17 @@
-﻿using Autenticacao.Jwt.Application.Commands.v1.GenerateToken;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
+using Store.Framework.Core.Bases.v1.Controllers;
+using Store.User.Application.Commands.v1.GenerateToken;
+using System.Net;
 
-namespace Autenticacao.Jwt.Controllers.v1
+namespace Store.User.Api.Controllers.v1
 {
     [Route("api/v1/authentication")]
     [ApiController]
-    public class AuthController : BaseController<AuthController>
+    public class AuthController(IMediator mediator) : BaseController<AuthController>(mediator)
     {
-        public AuthController(IMediator mediator, ILoggerFactory loggerFactory)
-            : base(mediator, loggerFactory)
-        {
-        }
-
         [HttpPost]
-        public async Task<IActionResult> GenerateToken([FromBody] GenerateTokenCommand request)
-        {
-            try
-            {
-                var token = await Mediator.Send(request);
-
-                return Ok(token);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(JsonSerializer.Serialize(ex.Message));
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
-        }
+        public async Task<IActionResult> GenerateToken([FromBody] GenerateTokenCommand request) =>
+             await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.Created);
     }
 }

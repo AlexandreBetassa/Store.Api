@@ -1,38 +1,43 @@
-﻿using Autenticacao.Jwt.Domain.Entities.v1;
-using Autenticacao.Jwt.Domain.Interfaces.v1.Patterns;
-using Autenticacao.Jwt.Domain.Interfaces.v1.Services;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Store.Framework.Core.Bases.v1.CommandHandler;
+using Store.User.Domain.Interfaces.v1.Repositories;
+using Store.User.Domain.Interfaces.v1.Services;
+using Store.User.Infrastructure.CrossCutting.Exceptions;
+using UserAccount = Store.User.Domain.Entities.v1.User;
 
-namespace Autenticacao.Jwt.Application.Commands.v1.Users.CreateUser
+namespace Store.User.Application.Commands.v1.Users.CreateUser
 {
-    public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommandHandler>, IRequestHandler<CreateUserCommand, Unit>
+    public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {
-        private readonly IPasswordServices<User> _passwordServices;
+        private readonly IPasswordServices<UserAccount> _passwordServices;
+        private readonly IUserRepository _userRepository;
+
         public CreateUserCommandHandler
             (ILoggerFactory loggerFactory,
             IMapper mapper,
-            IUnityOfWork unityOfWork,
-            IPasswordServices<User> passwordServices)
-            : base(loggerFactory, mapper, unityOfWork)
+            IUserRepository userRepository,
+            IPasswordServices<UserAccount> passwordServices,
+            IHttpContextAccessor contextAccessor)
+            : base(loggerFactory.CreateLogger<CreateUserCommandHandler>(), mapper, contextAccessor)
         {
             _passwordServices = passwordServices;
+            _userRepository = userRepository;
         }
 
-        public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public override async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 Logger.LogInformation($"Inicio metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
 
-                var user = Mapper.Map<User>(request);
+                var user = Mapper.Map<UserAccount>(request);
 
                 user.Password = _passwordServices.HashPassword(user, request.Password);
 
-                await UnityOfWork.BeginTransactionAsync();
-                await UnityOfWork.UserRepository.CreateAsync(user);
-                await UnityOfWork.CommitAsync();
+                await _userRepository.CreateAsync(user);
 
                 Logger.LogInformation($"Fim metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
 
@@ -41,9 +46,8 @@ namespace Autenticacao.Jwt.Application.Commands.v1.Users.CreateUser
             catch (Exception ex)
             {
                 Logger.LogError(ex, $"Erro metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
-                await UnityOfWork.RollbackAsync();
 
-                throw;
+                throw new InternalErrorException();
             }
         }
     }

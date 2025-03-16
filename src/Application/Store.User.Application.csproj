@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Autenticacao.Jwt.Application</RootNamespace>
+    <RootNamespace>Store.User.Application</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CrossCutting\Store.User.CrossCutting.csproj" />
+    <ProjectReference Include="..\Core\Store.Framework.Core.csproj" />
+    <ProjectReference Include="..\CrossCutting\Store.User.Infrastructure.CrossCutting.csproj" />
     <ProjectReference Include="..\Domain\Store.User.Domain.csproj" />
   </ItemGroup>
 

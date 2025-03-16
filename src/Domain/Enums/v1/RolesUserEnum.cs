@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Autenticacao.Jwt.Domain.Enums.v1
+namespace Store.User.Domain.Enums.v1
 {
     public enum RolesUserEnum
     {

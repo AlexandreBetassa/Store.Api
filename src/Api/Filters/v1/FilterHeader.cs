@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace Autenticacao.Jwt.Filters.v1
+namespace Store.User.Api.Filters.v1
 {
     public class FilterHeader : ActionFilterAttribute
     {

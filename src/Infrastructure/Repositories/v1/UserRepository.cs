@@ -1,6 +1,6 @@
-﻿using Autenticacao.Jwt.Domain.Entities.v1;
-using Autenticacao.Jwt.Domain.Interfaces.v1.Repositories;
-using Dapper;
+﻿using Dapper;
+using Store.User.Domain.Entities.v1;
+using Store.User.Domain.Interfaces.v1.Repositories;
 using System.Data;
 
 namespace Autenticacao.Jwt.Infrastructure.Repositories.v1
@@ -31,7 +31,10 @@ namespace Autenticacao.Jwt.Infrastructure.Repositories.v1
 
             parameters.Add("@NAME", username, DbType.AnsiString, ParameterDirection.Input, username.Length);
 
-            var query = $"SELECT NAME, PASSWORD, EMAIL, ROLE, STATUS FROM AUTENTICACAO WHERE NAME = @NAME";
+            var query =
+                $"SELECT NAME, PASSWORD, EMAIL, ROLE, STATUS " +
+                $"FROM AUTENTICACAO " +
+                $"WHERE NAME = @NAME";
 
             return await _dbConnection.QueryFirstOrDefaultAsync<User>(query, parameters);
         }
@@ -42,7 +45,10 @@ namespace Autenticacao.Jwt.Infrastructure.Repositories.v1
 
             parameters.Add("@EMAIL", email, DbType.AnsiString, ParameterDirection.Input, email.Length);
 
-            var query = $"SELECT NAME, PASSWORD, EMAIL, ROLE FROM AUTENTICACAO WHERE EMAIL = @EMAIL";
+            var query =
+                $"SELECT ID, NAME, PASSWORD, EMAIL, ROLE " +
+                $"FROM AUTENTICACAO " +
+                $"WHERE EMAIL = @EMAIL";
 
             return await _dbConnection.QueryFirstOrDefaultAsync<User>(query, parameters);
         }
@@ -60,6 +66,20 @@ namespace Autenticacao.Jwt.Infrastructure.Repositories.v1
                 $" WHERE NAME = @NAME";
 
             await _dbConnection.ExecuteScalarAsync(query, parameters);
+        }
+
+        public async Task<User> GetByIdAsync(int id)
+        {
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@ID", id, DbType.Int64, ParameterDirection.Input, id);
+
+            var query =
+                $"SELECT NAME, EMAIL, ROLE, STATUS " +
+                $"FROM AUTENTICACAO " +
+                $"WHERE ID = @ID";
+
+            return await _dbConnection.QueryFirstOrDefaultAsync<User>(query, parameters);
         }
     }
 }

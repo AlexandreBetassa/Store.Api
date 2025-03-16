@@ -1,4 +1,4 @@
-﻿namespace Autenticacao.Jwt.Domain.Interfaces.v1.Services
+﻿namespace Store.User.Domain.Interfaces.v1.Services
 {
     public interface IRedisService
     {

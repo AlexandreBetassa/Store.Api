@@ -1,7 +1,7 @@
-﻿using Autenticacao.Jwt.Domain.Enums.v1;
-using MediatR;
+﻿using MediatR;
+using Store.User.Domain.Enums.v1;
 
-namespace Autenticacao.Jwt.Application.Commands.v1.Users.CreateUser
+namespace Store.User.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommand : IRequest<Unit>
     {
