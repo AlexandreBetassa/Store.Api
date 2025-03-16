@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Application.Extensions;
+using Store.User.Application.Shared.Extensions;
 using Store.User.Domain.Interfaces.v1.Repositories;
 using Store.User.Infrastructure.CrossCutting.Exceptions;
 using System.Net;

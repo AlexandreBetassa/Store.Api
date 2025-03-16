@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Store.Frameworks.Core\Store.Frameworks.Core.csproj" />
     <ProjectReference Include="..\Application\Store.User.Application.csproj" />
     <ProjectReference Include="..\CrossCutting\Store.User.Infrastructure.CrossCutting.csproj" />
     <ProjectReference Include="..\Infrastructure\Store.User.Infrastructure.Data.csproj" />
