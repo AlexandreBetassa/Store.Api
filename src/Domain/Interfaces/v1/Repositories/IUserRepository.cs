@@ -2,14 +2,14 @@
 {
     public interface IUserRepository
     {
-        Task<Entities.v1.User> GetByUsernameAsync(string username);
-
-        Task<Entities.v1.User> GetByEmailAsync(string username);
+        Task<Entities.v1.User> GetByEmailAsync(string email);
 
         Task<Entities.v1.User> GetByIdAsync(int id);
 
         Task CreateAsync(Entities.v1.User user);
 
-        Task PatchStatusAsync(string username, bool status);
+        Task PatchStatusAsync(int id, bool status);
+
+        Task SaveChangesAsync();
     }
 }
