@@ -41,6 +41,7 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
                 await _userRepository.CreateAsync(user);
 
                 Logger.LogInformation($"Fim metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
+                await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;
             }
@@ -49,10 +50,6 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
                 Logger.LogError(ex, $"Erro metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
 
                 throw new InternalErrorException();
-            }
-            finally
-            {
-                await _userRepository.SaveChangesAsync();
             }
         }
     }

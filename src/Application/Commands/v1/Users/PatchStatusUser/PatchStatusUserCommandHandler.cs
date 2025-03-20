@@ -29,7 +29,6 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
         {
             try
             {
-                Logger.LogInformation("Inicio {handle}.{method}}", nameof(PatchStatusUserCommandHandler), nameof(Handle));
 
                 _ = int.TryParse(HttpContext.GetUserId(), out int id);
 
@@ -42,8 +41,7 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
                 user.ChangeStatus();
 
                 await _userRepository.PatchStatusAsync(id, user.Status);
-
-                Logger.LogInformation("Fim {handle}.{method}}", nameof(PatchStatusUserCommandHandler), nameof(Handle));
+                await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;
             }
@@ -52,10 +50,6 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
                 Logger.LogError(ex, "{handle}.{method}", nameof(PatchStatusUserCommandHandler), nameof(Handle));
 
                 throw new InternalErrorException();
-            }
-            finally
-            {
-                await _userRepository.SaveChangesAsync();
             }
         }
     }
