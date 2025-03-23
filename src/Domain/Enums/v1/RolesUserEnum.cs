@@ -4,13 +4,10 @@ namespace Store.User.Domain.Enums.v1
 {
     public enum RolesUserEnum
     {
-        [Description("Admin User")]
+        [Description("Admin")]
         Admin,
 
-        [Description("Standard User")]
-        Standard,
-
-        [Description("Guest User")]
-        Guest
+        [Description("User")]
+        User
     }
 }

@@ -23,7 +23,7 @@ namespace Store.Framework.Core.Bases.v1.Controllers
             {
                 var result = await func();
 
-                if (statusCode.Equals(HttpStatusCode.NoContent) || statusCode.Equals(HttpStatusCode.Created))
+                if (statusCode.Equals(HttpStatusCode.NoContent))
                     return StatusCode((int)statusCode);
 
                 return StatusCode((int)statusCode, result);
