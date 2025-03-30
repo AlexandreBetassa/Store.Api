@@ -1,15 +1,9 @@
-﻿namespace Store.User.Domain.Interfaces.v1.Repositories
+﻿using Store.Framework.Core.Bases.v1.Interfaces;
+
+namespace Store.User.Domain.Interfaces.v1.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<Entities.v1.User>
     {
-        Task<Entities.v1.User> GetByEmailAsync(string email);
-
-        Task<Entities.v1.User> GetByIdAsync(int id);
-
-        Task CreateAsync(Entities.v1.User user);
-
-        Task PatchStatusAsync(int id, bool status);
-
-        Task SaveChangesAsync();
+        Task<Entities.v1.User> GetByEmailOrUsernameAsync(string email);
     }
 }

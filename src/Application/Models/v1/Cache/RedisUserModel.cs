@@ -1,4 +1,4 @@
-﻿namespace Store.User.Application.DTOs.v1.Cache
+﻿namespace Store.User.Application.Models.v1.Cache
 {
     public class RedisUserModel
     {

@@ -5,8 +5,8 @@ using Store.Framework.Core.Bases.v1.Controllers;
 using Store.User.Api.Filters.v1;
 using Store.User.Application.Commands.v1.Users.CreateUser;
 using Store.User.Application.Commands.v1.Users.PatchStatusUser;
-using Store.User.Application.Constants.v1;
 using Store.User.Application.Queries.v1.GetUser;
+using Store.User.Domain.Enums.v1;
 using System.Net;
 
 namespace Store.User.Api.Controllers.v1
@@ -17,12 +17,12 @@ namespace Store.User.Api.Controllers.v1
     public class UserController(IMediator mediator) : BaseController<UserController>(mediator)
     {
         [HttpPatch("status")]
-        [Authorize(Policy = AccessPolicies.Write)]
+        [Authorize(Policy = nameof(AccessPoliciesEnum.Write))]
         public async Task<IActionResult> PatchAsync() =>
             await ExecuteAsync(async () => await Mediator.Send(new PatchStatusUserCommand()), HttpStatusCode.NoContent);
 
         [HttpGet]
-        [Authorize(Policy = AccessPolicies.Read)]
+        [Authorize(Policy = nameof(AccessPoliciesEnum.Write))]
         public async Task<IActionResult> GetAsync() =>
             await ExecuteAsync(async () => await Mediator.Send(new GetUserQuery()), HttpStatusCode.OK);
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-using Store.User.CrossCutting.Configurations.v1;
 using Store.User.Domain.Interfaces.v1.Services;
+using Store.User.Infrastructure.CrossCutting.Configurations.v1;
 using System.Text.Json;
 
 namespace Store.User.Application.Services.v1

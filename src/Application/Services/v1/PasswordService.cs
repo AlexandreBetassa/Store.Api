@@ -13,15 +13,9 @@ namespace Store.User.Application.Services.v1
             _passwordHasher = new PasswordHasher<T>();
         }
 
-        public string HashPassword(T login, string password)
-        {
-            return _passwordHasher.HashPassword(login, password);
-        }
+        public string HashPassword(T login, string password) => _passwordHasher.HashPassword(login, password);
 
-        public bool VerifyPassword(T login, string hashedPassword, string password)
-        {
-            var result = _passwordHasher.VerifyHashedPassword(login, hashedPassword, password);
-            return result == PasswordVerificationResult.Success;
-        }
+        public bool VerifyPassword(T login, string hashedPassword, string password) =>
+             _passwordHasher.VerifyHashedPassword(login, hashedPassword, password).Equals(PasswordVerificationResult.Success);
     }
 }

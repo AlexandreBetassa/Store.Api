@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Store.User.Domain.Models.v1.Users;
 
-namespace Store.User.Infrastructure.Data
+namespace Store.User.Infrastructure.Data.Repositories.v1
 {
-    public class UserContext(DbContextOptions<UserContext> options) : DbContext(options)
+    public class UserDbContext(DbContextOptions<UserDbContext> options) : DbContext(options)
     {
         public DbSet<Domain.Entities.v1.User> Users { get; set; }
 

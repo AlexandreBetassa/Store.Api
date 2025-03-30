@@ -9,19 +9,14 @@ using System.Net;
 
 namespace Store.User.Application.Queries.v1.GetUser
 {
-    public class GetUserQueryHandler : BaseCommandHandler<GetUserQuery, GetUserQueryResponse>
+    public class GetUserQueryHandler(
+        ILoggerFactory loggerFactory,
+        IMapper mapper,
+        IUserRepository userRepository,
+        IHttpContextAccessor contextAccessor)
+        : BaseCommandHandler<GetUserQuery, GetUserQueryResponse>(loggerFactory.CreateLogger<GetUserQueryHandler>(), mapper, contextAccessor)
     {
-        private readonly IUserRepository _userRepository;
-
-        public GetUserQueryHandler(
-            ILoggerFactory loggerFactory,
-            IMapper mapper,
-            IUserRepository userRepository,
-            IHttpContextAccessor contextAccessor)
-            : base(loggerFactory.CreateLogger<GetUserQueryHandler>(), mapper, contextAccessor)
-        {
-            _userRepository = userRepository;
-        }
+        private readonly IUserRepository _userRepository = userRepository;
 
         public override async Task<GetUserQueryResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {

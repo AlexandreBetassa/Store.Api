@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using Store.Framework.Core.Bases.v1.Entities;
+using System.Text.Json.Serialization;
 
 namespace Store.User.Domain.Entities.v1
 {
-    public class Login
+    public class Login : BaseEntity
     {
         [JsonIgnore]
         public int Id { get; set; }

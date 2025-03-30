@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Store.Framework.Core.csproj" />
     <ProjectReference Include="..\CrossCutting\Store.User.Infrastructure.CrossCutting.csproj" />
     <ProjectReference Include="..\Domain\Store.User.Domain.csproj" />
   </ItemGroup>

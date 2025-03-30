@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Application.DTOs.v1.Cache;
-using Store.User.CrossCutting.Configurations.v1;
+using Store.User.Application.Models.v1.Cache;
 using Store.User.Domain.Entities.v1;
 using Store.User.Domain.Interfaces.v1.Repositories;
 using Store.User.Domain.Interfaces.v1.Services;
+using Store.User.Infrastructure.CrossCutting.Configurations.v1;
 using Store.User.Infrastructure.CrossCutting.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
@@ -15,7 +15,7 @@ using System.Security.Claims;
 using System.Text;
 using UserAccount = Store.User.Domain.Entities.v1.User;
 
-namespace Store.User.Application.Commands.v1.Users.GenerateToken
+namespace Store.User.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {
@@ -48,7 +48,7 @@ namespace Store.User.Application.Commands.v1.Users.GenerateToken
             {
                 Logger.LogInformation("Inicio {handler}.{method}", nameof(GenerateTokenCommandHandler), nameof(Handle));
 
-                var user = await _userRepository.GetByEmailAsync(request.Email)
+                var user = await _userRepository.GetByEmailOrUsernameAsync(request.Email)
                     ?? throw new NotFoundException(HttpStatusCode.NotFound, "Usuário não encontrado");
 
                 var isValidPassword = _passwordServices.VerifyPassword(user.Login, user.Login.Password, request.Password);
