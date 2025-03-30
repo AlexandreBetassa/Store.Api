@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Store.Framework.Core.Bases.v1.Controllers;
-using Store.User.Application.Commands.v1.GenerateToken;
+using Store.User.Application.Commands.v1.Auth.GenerateToken;
 using System.Net;
 
 namespace Store.User.Api.Controllers.v1

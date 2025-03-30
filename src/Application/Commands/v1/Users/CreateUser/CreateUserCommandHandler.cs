@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Store.Framework.Core.Bases.v1.CommandHandler;
+using Store.User.Domain.Entities.v1;
 using Store.User.Domain.Interfaces.v1.Repositories;
 using Store.User.Domain.Interfaces.v1.Services;
 using Store.User.Infrastructure.CrossCutting.Exceptions;
@@ -12,14 +13,14 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {
-        private readonly IPasswordServices<UserAccount> _passwordServices;
+        private readonly IPasswordServices<Login> _passwordServices;
         private readonly IUserRepository _userRepository;
 
         public CreateUserCommandHandler
             (ILoggerFactory loggerFactory,
             IMapper mapper,
             IUserRepository userRepository,
-            IPasswordServices<UserAccount> passwordServices,
+            IPasswordServices<Login> passwordServices,
             IHttpContextAccessor contextAccessor)
             : base(loggerFactory.CreateLogger<CreateUserCommandHandler>(), mapper, contextAccessor)
         {
@@ -35,11 +36,12 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
 
                 var user = Mapper.Map<UserAccount>(request);
 
-                user.Password = _passwordServices.HashPassword(user, request.Password);
+                user.Login.Password = _passwordServices.HashPassword(user.Login, request.Login.Password);
 
                 await _userRepository.CreateAsync(user);
 
                 Logger.LogInformation($"Fim metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
+                await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;
             }

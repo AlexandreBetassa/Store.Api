@@ -1,4 +1,4 @@
-﻿namespace Store.User.CrossCutting.Configurations.v1.Models
+﻿namespace Store.User.Infrastructure.CrossCutting.Configurations.v1.Models
 {
     public class JwtConfiguration
     {

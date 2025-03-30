@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Application.Commands.v1.GenerateToken;
-using Store.User.Application.DTOs.v1.Cache;
-using Store.User.CrossCutting.Configurations.v1;
+using Store.User.Application.Models.v1.Cache;
+using Store.User.Domain.Entities.v1;
 using Store.User.Domain.Interfaces.v1.Repositories;
 using Store.User.Domain.Interfaces.v1.Services;
+using Store.User.Infrastructure.CrossCutting.Configurations.v1;
 using Store.User.Infrastructure.CrossCutting.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
@@ -15,13 +15,13 @@ using System.Security.Claims;
 using System.Text;
 using UserAccount = Store.User.Domain.Entities.v1.User;
 
-namespace Store.Domain.Entities.v1.User.Application.Commands.v1.GenerateToken
+namespace Store.User.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IRedisService _redisService;
-        private readonly IPasswordServices<UserAccount> _passwordServices;
+        private readonly IPasswordServices<Login> _passwordServices;
         private readonly AppsettingsConfigurations _appsettingsConfiguration;
 
         private const string _key = "token_";
@@ -31,7 +31,7 @@ namespace Store.Domain.Entities.v1.User.Application.Commands.v1.GenerateToken
             IMapper mapper,
             IUserRepository userRepository,
             IRedisService redisService,
-            IPasswordServices<UserAccount> passwordServices,
+            IPasswordServices<Login> passwordServices,
             AppsettingsConfigurations appsettingsConfigurations,
             IHttpContextAccessor contextAccessor)
                 : base(loggerFactory.CreateLogger<GenerateTokenCommandHandler>(), mapper, contextAccessor)
@@ -48,16 +48,16 @@ namespace Store.Domain.Entities.v1.User.Application.Commands.v1.GenerateToken
             {
                 Logger.LogInformation("Inicio {handler}.{method}", nameof(GenerateTokenCommandHandler), nameof(Handle));
 
-                var user = await _userRepository.GetByEmailAsync(request.Email)
+                var user = await _userRepository.GetByEmailOrUsernameAsync(request.Email)
                     ?? throw new NotFoundException(HttpStatusCode.NotFound, "Usuário não encontrado");
 
-                var isValidPassword = _passwordServices.VerifyPassword(user, user.Password, request.Password);
+                var isValidPassword = _passwordServices.VerifyPassword(user.Login, user.Login.Password, request.Password);
 
                 if (!isValidPassword)
                     throw new UnauthorizedException(HttpStatusCode.Unauthorized, "Usuário ou senha inválidos");
 
                 var token = GenerateToken(user);
-                var cacheModel = new RedisUserModel(token, user.Name, user.Email, user.Role);
+                var cacheModel = new RedisUserModel(token, user.Name.First, user.Login.Email, user.Role.ToString());
 
                 await _redisService.CreateAsync(token, cacheModel);
 
@@ -103,9 +103,9 @@ namespace Store.Domain.Entities.v1.User.Application.Commands.v1.GenerateToken
         {
             var ci = new ClaimsIdentity();
             ci.AddClaim(new Claim("id", user.Id.ToString()));
-            ci.AddClaim(new Claim("name", user.Name));
-            ci.AddClaim(new Claim("email", user.Email));
-            ci.AddClaim(new Claim("role", user.Role));
+            ci.AddClaim(new Claim("name", user.Name.First));
+            ci.AddClaim(new Claim("email", user.Login.Email));
+            ci.AddClaim(new Claim("role", user.Role.ToString()));
 
             return ci;
         }

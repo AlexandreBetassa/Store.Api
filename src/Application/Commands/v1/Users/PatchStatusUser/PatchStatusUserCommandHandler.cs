@@ -29,21 +29,19 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
         {
             try
             {
-                Logger.LogInformation("Inicio {handle}.{method}}", nameof(PatchStatusUserCommandHandler), nameof(Handle));
 
-                var username = HttpContext.GetUserName();
+                _ = int.TryParse(HttpContext.GetUserId(), out int id);
 
-                if (string.IsNullOrEmpty(username) || string.IsNullOrWhiteSpace(username))
+                if (id is 0)
                     throw new InvalidUserException(HttpStatusCode.BadRequest, "Dados do usuário inválido.");
 
-                var user = await _userRepository.GetByUsernameAsync(username)
+                var user = await _userRepository.GetByIdAsync(id)
                     ?? throw new Exception("Usuário não localizado!!!");
 
                 user.ChangeStatus();
 
-                await _userRepository.PatchStatusAsync(user.Name, user.Status);
-
-                Logger.LogInformation("Fim {handle}.{method}}", nameof(PatchStatusUserCommandHandler), nameof(Handle));
+                await _userRepository.PatchStatusAsync(id, user.Status);
+                await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;
             }

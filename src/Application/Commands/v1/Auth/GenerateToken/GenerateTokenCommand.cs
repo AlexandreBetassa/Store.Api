@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Store.User.Application.Commands.v1.GenerateToken
+namespace Store.User.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommand : IRequest<GenerateTokenResponse>
     {

@@ -1,18 +1,18 @@
-﻿namespace Store.User.Domain.Entities.v1
+﻿using Store.Framework.Core.Bases.v1.Entities;
+using Store.User.Domain.Enums.v1;
+using Store.User.Domain.Models.v1.Users;
+
+namespace Store.User.Domain.Entities.v1
 {
-    public class User
+    public class User : BaseEntity
     {
-        public int Id { get; set; }
+        public Name Name { get; set; }
 
-        public string Name { get; set; }
+        public Login Login { get; set; }
 
-        public string Email { get; set; }
+        public DateTime Birthday { get; set; }
 
-        public string Password { get; set; }
-
-        public string Role { get; set; }
-
-        public bool Status { get; set; }
+        public RolesUserEnum Role { get; set; }
 
         public void ChangeStatus() => Status = !Status;
     }

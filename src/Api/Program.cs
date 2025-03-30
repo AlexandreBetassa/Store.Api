@@ -1,18 +1,17 @@
-using Autenticacao.Jwt.Infrastructure.Repositories.v1;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Store.Domain.Entities.v1.User.Application.Commands.v1.GenerateToken;
 using Store.User.Api.Filters.v1;
+using Store.User.Application.Commands.v1.Auth.GenerateToken;
 using Store.User.Application.Commands.v1.Users.CreateUser;
-using Store.User.Application.Constants.v1;
 using Store.User.Application.Services.v1;
-using Store.User.CrossCutting.Configurations.v1;
+using Store.User.Domain.Enums.v1;
 using Store.User.Domain.Interfaces.v1.Repositories;
 using Store.User.Domain.Interfaces.v1.Services;
-using System.Data;
+using Store.User.Infrastructure.CrossCutting.Configurations.v1;
+using Store.User.Infrastructure.Data.Repositories.v1;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +21,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.Configure<AppsettingsConfigurations>(builder.Configuration.GetSection(nameof(AppsettingsConfigurations)));
 builder.Services.AddTransient(sp => sp.GetRequiredService<IOptions<AppsettingsConfigurations>>().Value);
-var appSettingsConfigurations = builder?.Services?.BuildServiceProvider()?.GetRequiredService<AppsettingsConfigurations>();
 
-builder.Services.AddTransient<IDbConnection>(dbOptions => new SqlConnection(appSettingsConfigurations?.Database));
+var appSettingsConfigurations = builder?.Services?.BuildServiceProvider()?.GetRequiredService<AppsettingsConfigurations>();
+builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(appSettingsConfigurations!.Database));
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -97,9 +96,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 var configurations = builder.Configuration.GetSection(nameof(AppsettingsConfigurations)).Get<AppsettingsConfigurations>();
 
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy(AccessPolicies.Write, policy =>
+    .AddPolicy(nameof(AccessPoliciesEnum.Write), policy =>
         policy.RequireRole(appSettingsConfigurations.JwtConfiguration!.WriteRoles))
-    .AddPolicy(AccessPolicies.Read, policy =>
+    .AddPolicy(nameof(AccessPoliciesEnum.Read), policy =>
         policy.RequireRole(appSettingsConfigurations.JwtConfiguration!.ReadRoles));
 
 var app = builder.Build();
