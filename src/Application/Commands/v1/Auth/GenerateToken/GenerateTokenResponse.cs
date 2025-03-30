@@ -2,6 +2,9 @@
 {
     public class GenerateTokenResponse
     {
+        /// <summary>
+        /// O token.
+        /// </summary>
         public string Token { get; set; }
     }
 }

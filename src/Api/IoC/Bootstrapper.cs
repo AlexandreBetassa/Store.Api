@@ -23,6 +23,7 @@ namespace Store.User.Api.IoC
             var appSettingsConfigurations = services.AddConfigurations(builder);
 
             services.InjectAuthenticationSwagger();
+            services.ConfigureSwaggerDoc();
             services.InjectContext(appSettingsConfigurations);
             services.InjectRepositories();
             services.InjectServices();
@@ -87,6 +88,22 @@ namespace Store.User.Api.IoC
         private static void InjectFilters(this IServiceCollection services)
         {
             services.AddTransient<FilterHeader>();
+        }
+
+        public static void ConfigureSwaggerDoc(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                var xmlFolderPath = Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Api\Swagger");
+                var absoluteXmlFolderPath = Path.GetFullPath(xmlFolderPath);
+
+                var xmlFiles = Directory.GetFiles(absoluteXmlFolderPath, "*.xml");
+
+                foreach (var xmlFile in xmlFiles)
+                {
+                    c.IncludeXmlComments(xmlFile);
+                }
+            });
         }
 
         public static void InjectAuthenticationSwagger(this IServiceCollection services)
