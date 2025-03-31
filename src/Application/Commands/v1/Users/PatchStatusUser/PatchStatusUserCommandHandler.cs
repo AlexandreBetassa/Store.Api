@@ -29,7 +29,6 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
         {
             try
             {
-
                 _ = int.TryParse(HttpContext.GetUserId(), out int id);
 
                 if (id is 0)
@@ -40,7 +39,8 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
 
                 user.ChangeStatus();
 
-                await _userRepository.PatchStatusAsync(id, user.Status);
+
+                await _userRepository.PatchAsync(id, x => x.SetProperty(x => x.Status, user.Status));
                 await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;

@@ -13,14 +13,14 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {
-        private readonly IPasswordServices<Login> _passwordServices;
+        private readonly IPasswordServices _passwordServices;
         private readonly IUserRepository _userRepository;
 
         public CreateUserCommandHandler
             (ILoggerFactory loggerFactory,
             IMapper mapper,
             IUserRepository userRepository,
-            IPasswordServices<Login> passwordServices,
+            IPasswordServices passwordServices,
             IHttpContextAccessor contextAccessor)
             : base(loggerFactory.CreateLogger<CreateUserCommandHandler>(), mapper, contextAccessor)
         {
@@ -32,15 +32,12 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
         {
             try
             {
-                Logger.LogInformation($"Inicio metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
-
                 var user = Mapper.Map<UserAccount>(request);
 
                 user.Login.Password = _passwordServices.HashPassword(user.Login, request.Login.Password);
 
                 await _userRepository.CreateAsync(user);
 
-                Logger.LogInformation($"Fim metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
                 await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;

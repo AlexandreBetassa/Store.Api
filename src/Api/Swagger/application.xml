@@ -19,5 +19,10 @@
             O token.
             </summary>
         </member>
+        <member name="P:Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword.RecoveryPasswordCommand.Email">
+            <summary>
+            O email do usuário cadastrado.
+            </summary>
+        </member>
     </members>
 </doc>

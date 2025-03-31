@@ -4,5 +4,7 @@
     {
         Task CreateAsync(string key, object data, int expirationInMinutes = 15);
         Task<string> GetKey(string key);
+
+        Task DeleteCache(string key);
     }
 }

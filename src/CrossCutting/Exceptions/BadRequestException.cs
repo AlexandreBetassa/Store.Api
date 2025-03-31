@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Store.User.Infrastructure.CrossCutting.Exceptions
 {
-    public class NotFoundException(string message, HttpStatusCode statusCode = HttpStatusCode.NotFound) 
+    public class BadRequestException(string message, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         : CustomException(statusCode, message)
     {
     }

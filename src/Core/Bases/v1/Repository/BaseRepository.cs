@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Store.Framework.Core.Bases.v1.Entities;
 using Store.Framework.Core.Bases.v1.Interfaces;
+using System.Linq.Expressions;
 
 namespace Store.Framework.Core.Bases.v1.Repository
 {
@@ -16,10 +18,13 @@ namespace Store.Framework.Core.Bases.v1.Repository
 
         public async Task CreateAsync(T entity) => await Context.Set<T>().AddAsync(entity);
 
-        public async Task PatchStatusAsync(int id, bool status) =>
+        public async Task PatchAsync(int id, Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>> expression) =>
             await Context.Set<T>()
                 .Where(x => x.Id.Equals(id))
-                .ExecuteUpdateAsync(x => x.SetProperty(u => u.Status, status));
+                .ExecuteUpdateAsync(expression);
+
+        public async Task Updateasync(T entity) =>
+            Context.Set<T>().Update(entity);
 
         public async Task SaveChangesAsync() =>
             await Context.SaveChangesAsync();

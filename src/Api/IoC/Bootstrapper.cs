@@ -74,7 +74,7 @@ namespace Store.User.Api.IoC
         private static void InjectServices(this IServiceCollection services)
         {
             services.AddTransient<IRedisService, RedisService>();
-            services.AddTransient(typeof(IPasswordServices<>), typeof(PasswordService<>));
+            services.AddTransient(typeof(IPasswordServices), typeof(PasswordService));
         }
 
         private static void InjectContext(this IServiceCollection services, AppsettingsConfigurations appSettingsConfigurations) =>
@@ -83,6 +83,7 @@ namespace Store.User.Api.IoC
         private static void InjectRepositories(this IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ILoginRepository, LoginRepository>();
         }
 
         private static void InjectFilters(this IServiceCollection services)

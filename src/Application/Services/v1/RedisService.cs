@@ -26,5 +26,7 @@ namespace Store.User.Application.Services.v1
         {
             return await _cache.GetStringAsync(key) ?? string.Empty;
         }
+
+        public async Task DeleteCache(string key) => await _cache.RemoveAsync(key);
     }
 }

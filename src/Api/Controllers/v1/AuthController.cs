@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Store.Framework.Core.Bases.v1.Controllers;
 using Store.User.Application.Commands.v1.Auth.GenerateToken;
-using Store.User.Infrastructure.CrossCutting.Exceptions;
+using Store.User.Application.Commands.v1.Auth.PutPassword;
+using Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword;
 using System.Net;
 
 namespace Store.User.Api.Controllers.v1
@@ -24,5 +25,16 @@ namespace Store.User.Api.Controllers.v1
         public async Task<IActionResult> GenerateToken([FromBody] GenerateTokenCommand request) =>
              await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.Created);
 
+        [HttpPost("recovery")]
+        public async Task<IActionResult> RecoveryPassword([FromBody] RecoveryPasswordCommand request)
+        {
+            return await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.Created);
+        }
+
+        [HttpPatch("password")]
+        public async Task<IActionResult> PatchPassword([FromBody] PatchPasswordCommand request)
+        {
+            return await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.NoContent);
+        }
     }
 }
