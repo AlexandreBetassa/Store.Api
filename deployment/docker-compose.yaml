@@ -26,7 +26,7 @@ services:
       - app-network
 
   user-api:
-    image: fatecstore/user-api:20250405.5
+    image: fatecstore/user-api:20250405.13
     container_name: user-api
     ports:
       - "8080:8080"
@@ -38,6 +38,8 @@ services:
       - AppsettingsConfigurations__JwtConfiguration__Issuer="TesteIssuer"
       - AppsettingsConfigurations__JwtConfiguration__SecretJwtKey="YjA2Nzk0MmJjMTUyNDgyNThhY2NmOWNlNmZkMDg2NDFhdXRodGVzdGU="
       - AppsettingsConfigurations__RedisConfiguration__ExpirationInMinutes=60
+      - AppsettingsConfigurations__RedisConfiguration__Server=redis:6379
+      - AppsettingsConfigurations__Database=Server=sqlserver,1433;Initial Catalog=Store;User ID=SA;Password=*SQLestudo2024;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;
 
     depends_on:
       - sqlserver
