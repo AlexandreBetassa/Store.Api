@@ -4,13 +4,15 @@ services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver_container
+    environment:
+      SA_PASSWORD: "SQLestudo2024"
+      ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
-    environment:
-      SA_PASSWORD: "*SQLestudo2024"
-      ACCEPT_EULA: "Y"
     volumes:
       - sqlserver_data:/var/opt/mssql
+    networks:
+      - app-network
 
   redis:
     image: redis:latest
@@ -20,13 +22,33 @@ services:
     command: redis-server --save 20 1 --loglevel warning
     volumes:
       - redis_data:/data
-  
-  user:
-    image: fatecstore/user-api:20250405.2
+    networks:
+      - app-network
+
+  user-api:
+    image: fatecstore/user-api:20250405.5
     container_name: user-api
     ports:
       - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - AppsettingsConfigurations__EmailConfiguration__FromMail="fatec.store2025@gmail.com"
+      - AppsettingsConfigurations__EmailConfiguration__FromMailPassword="hvkmxsqkzvjnmlim"
+      - AppsettingsConfigurations__JwtConfiguration__Audience="TesteAudience"
+      - AppsettingsConfigurations__JwtConfiguration__Issuer="TesteIssuer"
+      - AppsettingsConfigurations__JwtConfiguration__SecretJwtKey="YjA2Nzk0MmJjMTUyNDgyNThhY2NmOWNlNmZkMDg2NDFhdXRodGVzdGU="
+      - AppsettingsConfigurations__RedisConfiguration__ExpirationInMinutes=60
+
+    depends_on:
+      - sqlserver
+      - redis
+    networks:
+      - app-network
 
 volumes:
   sqlserver_data:
   redis_data:
+
+networks:
+  app-network:
+    driver: bridge
