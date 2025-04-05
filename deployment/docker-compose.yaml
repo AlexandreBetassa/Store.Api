@@ -40,7 +40,20 @@ services:
       - AppsettingsConfigurations__RedisConfiguration__ExpirationInMinutes=60
       - AppsettingsConfigurations__RedisConfiguration__Server=redis:6379
       - AppsettingsConfigurations__Database=Server=sqlserver,1433;Initial Catalog=Store;User ID=SA;Password=*SQLestudo2024;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;
+    depends_on:
+      - sqlserver
+      - redis
+    networks:
+      - app-network
 
+  products-api:
+    image: fatecstore/products-api:20250405.2
+    container_name: products-api
+    ports:
+      - "8081:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Initial Catalog=Store;User ID=SA;Password=*SQLestudo2024;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;
     depends_on:
       - sqlserver
       - redis
