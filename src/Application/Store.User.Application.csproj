@@ -5,7 +5,7 @@
     <RootNamespace>Store.User.Application</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <DocumentationFile>D:\Projetos-pessoais\Fatec.Store\Store.User.Api\src\Api\Swagger\application.xml</DocumentationFile>
   </PropertyGroup>
 

@@ -23,7 +23,7 @@ namespace Store.User.Api.IoC
             var appSettingsConfigurations = services.AddConfigurations(builder);
 
             services.InjectAuthenticationSwagger();
-            services.ConfigureSwaggerDoc();
+            //services.ConfigureSwaggerDoc();
             services.InjectContext(appSettingsConfigurations);
             services.InjectRepositories();
             services.InjectServices();

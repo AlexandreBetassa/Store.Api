@@ -20,6 +20,12 @@ services:
     command: redis-server --save 20 1 --loglevel warning
     volumes:
       - redis_data:/data
+  
+  user:
+    image: fatecstore/user-api:20250405.2
+    container_name: user-api
+    ports:
+      - "8080:8080"
 
 volumes:
   sqlserver_data:
