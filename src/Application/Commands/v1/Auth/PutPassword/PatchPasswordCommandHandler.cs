@@ -35,7 +35,7 @@ namespace Store.User.Application.Commands.v1.Auth.PutPassword
                 if (!request.NewPassword.Equals(request.ConfirmNewPassword))
                     throw new BadRequestException("As senhas não conferem.");
 
-                var cache = await _passwordServices.GetRecoveryPasswordCacheAsync(request.RecoveryCode);
+                var cache = await _passwordServices.GetRecoveryPasswordCacheAsync(request.RecoveryCode, request.Email);
 
                 if (string.IsNullOrEmpty(cache))
                     throw new BadRequestException("Código de verificação inválido.");

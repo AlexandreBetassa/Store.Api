@@ -25,12 +25,12 @@ namespace Store.User.Application.Services.v1
              _passwordHasher.VerifyHashedPassword(login, hashedPassword, password).Equals(PasswordVerificationResult.Success);
 
         public async Task PersistCacheRecoveryPassword(RecoveryPasswordCache cache) =>
-            await _redisService.CreateAsync(string.Format($"{_cacheKey}_{cache.RecoveryCode}"), cache);
+            await _redisService.CreateAsync(string.Format($"{_cacheKey}_{cache.RecoveryCode}_{cache.Email}"), cache);
 
-        public async Task<string> GetRecoveryPasswordCacheAsync(string recoveryCode) =>
-            await _redisService.GetKey(string.Format($"{_cacheKey}_{recoveryCode}"));
+        public async Task<string> GetRecoveryPasswordCacheAsync(string recoveryCode, string email) =>
+            await _redisService.GetKey(string.Format($"{_cacheKey}_{recoveryCode}_{email}"));
 
         public async Task DeleteCacheRecoveryPassword(RecoveryPasswordCache cache) =>
-            await _redisService.DeleteCache(string.Format($"{_cacheKey}_{cache.RecoveryCode}"));
+            await _redisService.DeleteCache(string.Format($"{_cacheKey}_{cache.RecoveryCode}_{cache.Email}"));
     }
 }

@@ -13,6 +13,6 @@ namespace Store.User.Domain.Interfaces.v1.Services
 
         Task DeleteCacheRecoveryPassword(RecoveryPasswordCache cache);
 
-        Task<string> GetRecoveryPasswordCacheAsync(string recoveryCode);
+        Task<string> GetRecoveryPasswordCacheAsync(string recoveryCode, string email);
     }
 }
