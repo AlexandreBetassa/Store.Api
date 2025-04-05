@@ -35,8 +35,4 @@
     <ProjectReference Include="..\Infrastructure\Store.User.Infrastructure.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Swagger\" />
-  </ItemGroup>
-
 </Project>

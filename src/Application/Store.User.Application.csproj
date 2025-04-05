@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CrossCutting\Store.User.Infrastructure.CrossCutting.csproj" />
     <ProjectReference Include="..\Domain\Store.User.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\Store.User.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

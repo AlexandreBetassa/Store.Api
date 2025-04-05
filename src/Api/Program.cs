@@ -1,4 +1,5 @@
 using Store.User.Api.IoC;
+using Store.User.Application.Services.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.InjectDependencies(builder);
 
 var app = builder.Build();
+DatabaseManagementService.MigrationInitialisation(app);
 
 app.UseSwagger();
 app.UseSwaggerUI();
