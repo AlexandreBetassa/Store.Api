@@ -73,6 +73,7 @@ namespace Store.User.Api.IoC
 
         private static void InjectServices(this IServiceCollection services)
         {
+            services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IRedisService, RedisService>();
             services.AddTransient(typeof(IPasswordServices), typeof(PasswordService));
         }
