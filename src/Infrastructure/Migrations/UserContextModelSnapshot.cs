@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Store.User.Infrastructure.Data.Repositories.v1;
+using Store.User.Infrastructure.Data.Context;
+
 
 #nullable disable
 

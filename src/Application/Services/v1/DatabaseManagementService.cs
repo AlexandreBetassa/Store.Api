@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Store.User.Infrastructure.Data.Repositories.v1;
+using Store.User.Infrastructure.Data.Context;
 
 namespace Store.User.Application.Services.v1
 {

@@ -11,6 +11,7 @@ using Store.User.Domain.Enums.v1;
 using Store.User.Domain.Interfaces.v1.Repositories;
 using Store.User.Domain.Interfaces.v1.Services;
 using Store.User.Infrastructure.CrossCutting.Configurations.v1;
+using Store.User.Infrastructure.Data.Context;
 using Store.User.Infrastructure.Data.Repositories.v1;
 using System.Text;
 

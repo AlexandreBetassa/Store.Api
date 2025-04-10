@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Store.Framework.Core.Bases.v1.Repository;
 using Store.User.Domain.Interfaces.v1.Repositories;
+using Store.User.Infrastructure.Data.Context;
 
 namespace Store.User.Infrastructure.Data.Repositories.v1
 {
