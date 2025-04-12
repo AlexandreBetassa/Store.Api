@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Store.User.Domain</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Fatec.Store.Framework.Core\Core\Fatec.Store.Framework.Core.csproj" />
     <ProjectReference Include="..\Core\Store.Framework.Core.csproj" />
   </ItemGroup>
 

@@ -1,27 +1,26 @@
 ﻿using AutoMapper;
+using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
+using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
+using Fatec.Store.User.Domain.Interfaces.v1.Services;
+using Fatec.Store.User.Domain.Models.v1.Cache;
+using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1;
+using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Application.Models.v1.Cache;
-using Store.User.Domain.Entities.v1;
-using Store.User.Domain.Interfaces.v1.Repositories;
-using Store.User.Domain.Interfaces.v1.Services;
-using Store.User.Infrastructure.CrossCutting.Configurations.v1;
-using Store.User.Infrastructure.CrossCutting.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
-using UserAccount = Store.User.Domain.Entities.v1.User;
+using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
 
-namespace Store.User.Application.Commands.v1.Auth.GenerateToken
+namespace Fatec.Store.User.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IRedisService _redisService;
-        private readonly IPasswordServices<Login> _passwordServices;
+        private readonly IPasswordServices _passwordServices;
         private readonly AppsettingsConfigurations _appsettingsConfiguration;
 
         private const string _key = "token_";
@@ -31,7 +30,7 @@ namespace Store.User.Application.Commands.v1.Auth.GenerateToken
             IMapper mapper,
             IUserRepository userRepository,
             IRedisService redisService,
-            IPasswordServices<Login> passwordServices,
+            IPasswordServices passwordServices,
             AppsettingsConfigurations appsettingsConfigurations,
             IHttpContextAccessor contextAccessor)
                 : base(loggerFactory.CreateLogger<GenerateTokenCommandHandler>(), mapper, contextAccessor)
@@ -49,7 +48,7 @@ namespace Store.User.Application.Commands.v1.Auth.GenerateToken
                 Logger.LogInformation("Inicio {handler}.{method}", nameof(GenerateTokenCommandHandler), nameof(Handle));
 
                 var user = await _userRepository.GetByEmailOrUsernameAsync(request.Email)
-                    ?? throw new NotFoundException(HttpStatusCode.NotFound, "Usuário não encontrado");
+                    ?? throw new NotFoundException("Usuário não encontrado");
 
                 var isValidPassword = _passwordServices.VerifyPassword(user.Login, user.Login.Password, request.Password);
 
@@ -57,9 +56,9 @@ namespace Store.User.Application.Commands.v1.Auth.GenerateToken
                     throw new UnauthorizedException(HttpStatusCode.Unauthorized, "Usuário ou senha inválidos");
 
                 var token = GenerateToken(user);
-                var cacheModel = new RedisUserModel(token, user.Name.First, user.Login.Email, user.Role.ToString());
 
-                await _redisService.CreateAsync(token, cacheModel);
+                await _redisService.CreateAsync(token,
+                    new RedisTokenModel(token, user.Name.First, user.Login.Email, user.Role.ToString()));
 
                 Logger.LogInformation("Fim {handler}.{method}", nameof(GenerateTokenCommandHandler), nameof(Handle));
 

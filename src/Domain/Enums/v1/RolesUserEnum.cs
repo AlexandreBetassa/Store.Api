@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Store.User.Domain.Enums.v1
+namespace Fatec.Store.User.Domain.Enums.v1
 {
     public enum RolesUserEnum
     {

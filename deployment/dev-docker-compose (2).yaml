@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_container
+    environment:
+      SA_PASSWORD: "SQLestudo2024"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - app-network
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+
+  user-api:
+    image: fatecstore/user-api:20250406.1
+    container_name: user-api
+    ports:
+      - "8080:8080"
+    environment:
+      - AppsettingsConfigurations__EmailConfiguration__FromMail=fatec.store2025@gmail.com
+      - AppsettingsConfigurations__EmailConfiguration__FromMailPassword=lpsnyviaqvfzaywb
+      - AppsettingsConfigurations__JwtConfiguration__Audience=TesteAudience
+      - AppsettingsConfigurations__JwtConfiguration__Issuer=TesteIssuer
+      - AppsettingsConfigurations__JwtConfiguration__SecretJwtKey=YjA2Nzk0MmJjMTUyNDgyNThhY2NmOWNlNmZkMDg2NDFhdXRodGVzdGU=
+      - AppsettingsConfigurations__RedisConfiguration__ExpirationInMinutes=60
+      - AppsettingsConfigurations__RedisConfiguration__Server=redis:6379
+      - AppsettingsConfigurations__Database=Server=sqlserver,1433;Initial Catalog=Store;User ID=SA;Password=*SQLestudo2024;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;
+    depends_on:
+      - sqlserver
+      - redis
+    networks:
+      - app-network
+
+  products-api:
+    image: fatecstore/products-api:20250412.2
+    container_name: products-api
+    ports:
+      - "8081:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Initial Catalog=Store;User ID=SA;Password=*SQLestudo2024;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;
+    depends_on:
+      - sqlserver
+      - redis
+    networks:
+      - app-network
+ 
+  carts-api:
+    image: fatecstore/carts-api:20250412.2
+    container_name: carts-api
+    ports:
+      - "8082:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Initial Catalog=Store;User ID=SA;Password=*SQLestudo2024;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;
+    depends_on:
+      - sqlserver
+      - redis
+    networks:
+      - app-network
+
+  store-web:
+    image: fatecstore/web:latest
+    container_name: store-web
+    depends_on:
+      - products-api
+      - user-api 
+    networks:
+      - app-network
+
+volumes:
+  sqlserver_data:
+  redis_data:
+
+networks:
+  app-network:
+    driver: bridge

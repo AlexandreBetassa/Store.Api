@@ -1,4 +1,4 @@
-﻿namespace Store.User.Application.Queries.v1.GetUser
+﻿namespace Fatec.Store.User.Application.Queries.v1.GetUser
 {
     public class GetUserQueryResponse
     {

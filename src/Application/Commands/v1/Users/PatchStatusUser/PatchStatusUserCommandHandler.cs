@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
+using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
+using Fatec.Store.User.Application.Shared.Extensions;
+using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
+using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Application.Shared.Extensions;
-using Store.User.Domain.Interfaces.v1.Repositories;
-using Store.User.Infrastructure.CrossCutting.Exceptions;
 using System.Net;
 
-namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
+namespace Fatec.Store.User.Application.Commands.v1.Users.PatchStatusUser
 {
     public class PatchStatusUserCommandHandler
         : BaseCommandHandler<PatchStatusUserCommand, Unit>
@@ -29,7 +29,6 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
         {
             try
             {
-
                 _ = int.TryParse(HttpContext.GetUserId(), out int id);
 
                 if (id is 0)
@@ -40,7 +39,8 @@ namespace Store.User.Application.Commands.v1.Users.PatchStatusUser
 
                 user.ChangeStatus();
 
-                await _userRepository.PatchStatusAsync(id, user.Status);
+
+                await _userRepository.PatchAsync(id, x => x.SetProperty(x => x.Status, user.Status));
                 await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;

@@ -1,15 +1,15 @@
-﻿using MediatR;
+﻿using Fatec.Store.Framework.Core.Bases.v1.Controllers;
+using Fatec.Store.Framework.Core.Enums;
+using Fatec.Store.User.Api.Filters.v1;
+using Fatec.Store.User.Application.Commands.v1.Users.CreateUser;
+using Fatec.Store.User.Application.Commands.v1.Users.PatchStatusUser;
+using Fatec.Store.User.Application.Queries.v1.GetUser;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Store.Framework.Core.Bases.v1.Controllers;
-using Store.User.Api.Filters.v1;
-using Store.User.Application.Commands.v1.Users.CreateUser;
-using Store.User.Application.Commands.v1.Users.PatchStatusUser;
-using Store.User.Application.Queries.v1.GetUser;
-using Store.User.Domain.Enums.v1;
 using System.Net;
 
-namespace Store.User.Api.Controllers.v1
+namespace Fatec.Store.User.Api.Controllers.v1
 {
     [Route("api/v1/users")]
     [ApiController]

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Store.User.Infrastructure.Data.Repositories.v1
+namespace Fatec.Store.User.Infrastructure.Data.Context
 {
     public class UserDbContext(DbContextOptions<UserDbContext> options) : DbContext(options)
     {

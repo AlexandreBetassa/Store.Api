@@ -4,10 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Store.User.Api</RootNamespace>
+    <RootNamespace>Fatec.Store.User.Api</RootNamespace>
     <UserSecretsId>d49df44a-aefa-4d78-9b2d-8a581bee30fc</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <DocumentationFile>D:\Projetos-pessoais\Fatec.Store\Store.User.Api\src\Api\Swagger\api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,9 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Store.User.Application.csproj" />
-    <ProjectReference Include="..\CrossCutting\Store.User.Infrastructure.CrossCutting.csproj" />
-    <ProjectReference Include="..\Infrastructure\Store.User.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Application\Fatec.Store.User.Application.csproj" />
+    <ProjectReference Include="..\CrossCutting\Fatec.Store.User.Infrastructure.CrossCutting.csproj" />
+    <ProjectReference Include="..\Infrastructure\Fatec.Store.User.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

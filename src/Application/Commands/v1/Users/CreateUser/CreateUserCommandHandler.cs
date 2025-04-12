@@ -1,26 +1,25 @@
 ﻿using AutoMapper;
+using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
+using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
+using Fatec.Store.User.Domain.Interfaces.v1.Services;
+using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Domain.Entities.v1;
-using Store.User.Domain.Interfaces.v1.Repositories;
-using Store.User.Domain.Interfaces.v1.Services;
-using Store.User.Infrastructure.CrossCutting.Exceptions;
-using UserAccount = Store.User.Domain.Entities.v1.User;
+using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
 
-namespace Store.User.Application.Commands.v1.Users.CreateUser
+namespace Fatec.Store.User.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {
-        private readonly IPasswordServices<Login> _passwordServices;
+        private readonly IPasswordServices _passwordServices;
         private readonly IUserRepository _userRepository;
 
         public CreateUserCommandHandler
             (ILoggerFactory loggerFactory,
             IMapper mapper,
             IUserRepository userRepository,
-            IPasswordServices<Login> passwordServices,
+            IPasswordServices passwordServices,
             IHttpContextAccessor contextAccessor)
             : base(loggerFactory.CreateLogger<CreateUserCommandHandler>(), mapper, contextAccessor)
         {
@@ -32,15 +31,12 @@ namespace Store.User.Application.Commands.v1.Users.CreateUser
         {
             try
             {
-                Logger.LogInformation($"Inicio metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
-
                 var user = Mapper.Map<UserAccount>(request);
 
                 user.Login.Password = _passwordServices.HashPassword(user.Login, request.Login.Password);
 
                 await _userRepository.CreateAsync(user);
 
-                Logger.LogInformation($"Fim metodo {nameof(CreateUserCommandHandler)}.{nameof(Handle)}");
                 await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;
