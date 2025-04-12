@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Store.Framework.Core.Enums;
 using Store.User.Api.Filters.v1;
 using Store.User.Application.Commands.v1.Auth.GenerateToken;
 using Store.User.Application.Commands.v1.Users.CreateUser;

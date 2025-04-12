@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Store.Framework.Core.Bases.v1.Controllers;
+using Store.Framework.Core.Enums;
 using Store.User.Api.Filters.v1;
 using Store.User.Application.Commands.v1.Users.CreateUser;
 using Store.User.Application.Commands.v1.Users.PatchStatusUser;
