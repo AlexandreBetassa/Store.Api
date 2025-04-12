@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Store.User.Application.Commands.v1.Auth.PutPassword
+namespace Fatec.Store.User.Application.Commands.v1.Auth.PutPassword
 {
     public class PatchPasswordCommandValidator : AbstractValidator<PatchPasswordCommand>
     {

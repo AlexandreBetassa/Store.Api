@@ -1,7 +1,7 @@
-﻿using Store.Framework.Core.Bases.v1.Exceptions;
+﻿using Fatec.Store.Framework.Core.Bases.v1.Exceptions;
 using System.Net;
 
-namespace Store.User.Infrastructure.CrossCutting.Exceptions
+namespace Fatec.Store.User.Infrastructure.CrossCutting.Exceptions
 {
     public class InternalErrorException(
         HttpStatusCode statusCode = HttpStatusCode.InternalServerError,

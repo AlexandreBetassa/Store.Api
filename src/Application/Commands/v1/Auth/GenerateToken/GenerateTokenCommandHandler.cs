@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
+using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
+using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
+using Fatec.Store.User.Domain.Interfaces.v1.Services;
+using Fatec.Store.User.Domain.Models.v1.Cache;
+using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1;
+using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Domain.Interfaces.v1.Repositories;
-using Store.User.Domain.Interfaces.v1.Services;
-using Store.User.Domain.Models.v1.Cache;
-using Store.User.Infrastructure.CrossCutting.Configurations.v1;
-using Store.User.Infrastructure.CrossCutting.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
-using UserAccount = Store.User.Domain.Entities.v1.User;
+using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
 
-namespace Store.User.Application.Commands.v1.Auth.GenerateToken
+namespace Fatec.Store.User.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {
@@ -57,7 +57,7 @@ namespace Store.User.Application.Commands.v1.Auth.GenerateToken
 
                 var token = GenerateToken(user);
 
-                await _redisService.CreateAsync(token, 
+                await _redisService.CreateAsync(token,
                     new RedisTokenModel(token, user.Name.First, user.Login.Email, user.Role.ToString()));
 
                 Logger.LogInformation("Fim {handler}.{method}", nameof(GenerateTokenCommandHandler), nameof(Handle));

@@ -1,10 +1,10 @@
-﻿using Store.User.Domain.Interfaces.v1.Services;
-using Store.User.Infrastructure.CrossCutting.Configurations.v1;
-using Store.User.Infrastructure.CrossCutting.Configurations.v1.Models;
+﻿using Fatec.Store.User.Domain.Interfaces.v1.Services;
+using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1;
+using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1.Models;
 using System.Net;
 using System.Net.Mail;
 
-namespace Store.User.Application.Services.v1
+namespace Fatec.Store.User.Application.Services.v1
 {
     public class EmailService(AppsettingsConfigurations appsettingsConfigurations) : IEmailService
     {

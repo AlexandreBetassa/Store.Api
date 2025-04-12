@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using UserAccount = Store.User.Domain.Entities.v1.User;
+using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
 
-namespace Store.User.Application.Queries.v1.GetUser
+namespace Fatec.Store.User.Application.Queries.v1.GetUser
 {
     public class GetUserQueryProfile : Profile
     {

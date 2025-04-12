@@ -1,6 +1,6 @@
-﻿using Store.User.Infrastructure.CrossCutting.Configurations.v1.Models;
+﻿using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1.Models;
 
-namespace Store.User.Infrastructure.CrossCutting.Configurations.v1
+namespace Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1
 {
     public class AppsettingsConfigurations
     {

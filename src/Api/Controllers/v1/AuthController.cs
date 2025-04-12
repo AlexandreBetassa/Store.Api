@@ -1,12 +1,12 @@
-﻿using MediatR;
+﻿using Fatec.Store.Framework.Core.Bases.v1.Controllers;
+using Fatec.Store.User.Application.Commands.v1.Auth.GenerateToken;
+using Fatec.Store.User.Application.Commands.v1.Auth.PutPassword;
+using Fatec.Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Store.Framework.Core.Bases.v1.Controllers;
-using Store.User.Application.Commands.v1.Auth.GenerateToken;
-using Store.User.Application.Commands.v1.Auth.PutPassword;
-using Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword;
 using System.Net;
 
-namespace Store.User.Api.Controllers.v1
+namespace Fatec.Store.User.Api.Controllers.v1
 {
     [Route("api/v1/authentication")]
     [ApiController]

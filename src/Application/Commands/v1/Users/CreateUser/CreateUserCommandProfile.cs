@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using UserAccount = Store.User.Domain.Entities.v1.User;
+using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
 
-namespace Store.User.Application.Commands.v1.Users.CreateUser
+namespace Fatec.Store.User.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandProfile : Profile
     {

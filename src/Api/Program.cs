@@ -1,5 +1,5 @@
-using Store.User.Api.IoC;
-using Store.User.Application.Services.v1;
+using Fatec.Store.User.Api.IoC;
+using Fatec.Store.User.Application.Services.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 

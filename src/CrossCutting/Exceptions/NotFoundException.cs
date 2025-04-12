@@ -1,9 +1,9 @@
-﻿using Store.Framework.Core.Bases.v1.Exceptions;
+﻿using Fatec.Store.Framework.Core.Bases.v1.Exceptions;
 using System.Net;
 
-namespace Store.User.Infrastructure.CrossCutting.Exceptions
+namespace Fatec.Store.User.Infrastructure.CrossCutting.Exceptions
 {
-    public class NotFoundException(string message, HttpStatusCode statusCode = HttpStatusCode.NotFound) 
+    public class NotFoundException(string message, HttpStatusCode statusCode = HttpStatusCode.NotFound)
         : CustomException(statusCode, message)
     {
     }

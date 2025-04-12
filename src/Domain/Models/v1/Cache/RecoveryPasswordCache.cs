@@ -1,4 +1,4 @@
-﻿namespace Store.User.Domain.Models.v1.Cache
+﻿namespace Fatec.Store.User.Domain.Models.v1.Cache
 {
     public class RecoveryPasswordCache(string email, string recoveryCode, int userId)
     {

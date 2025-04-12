@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Store.User.Application.Commands.v1.Users.CreateUser
+namespace Fatec.Store.User.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {

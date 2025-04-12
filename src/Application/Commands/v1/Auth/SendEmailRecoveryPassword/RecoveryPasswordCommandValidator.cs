@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword
+namespace Fatec.Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword
 {
     public class RecoveryPasswordCommandValidator : AbstractValidator<RecoveryPasswordCommand>
     {

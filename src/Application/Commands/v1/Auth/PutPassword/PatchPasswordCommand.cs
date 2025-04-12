@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Store.User.Application.Commands.v1.Auth.PutPassword
+namespace Fatec.Store.User.Application.Commands.v1.Auth.PutPassword
 {
     public class PatchPasswordCommand : IRequest<Unit>
     {

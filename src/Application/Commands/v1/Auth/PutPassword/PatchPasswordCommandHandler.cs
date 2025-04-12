@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
+using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
+using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
+using Fatec.Store.User.Domain.Interfaces.v1.Services;
+using Fatec.Store.User.Domain.Models.v1.Cache;
+using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Store.Framework.Core.Bases.v1.CommandHandler;
-using Store.User.Domain.Interfaces.v1.Repositories;
-using Store.User.Domain.Interfaces.v1.Services;
-using Store.User.Domain.Models.v1.Cache;
-using Store.User.Infrastructure.CrossCutting.Exceptions;
 
-namespace Store.User.Application.Commands.v1.Auth.PutPassword
+namespace Fatec.Store.User.Application.Commands.v1.Auth.PutPassword
 {
     public class PutPasswordCommandHandler : BaseCommandHandler<PatchPasswordCommand, Unit>
     {
