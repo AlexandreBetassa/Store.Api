@@ -24,7 +24,6 @@ namespace Fatec.Store.User.Api.IoC
             var appSettingsConfigurations = services.AddConfigurations(builder);
 
             services.InjectAuthenticationSwagger();
-            //services.ConfigureSwaggerDoc();
             services.InjectContext(appSettingsConfigurations);
             services.InjectRepositories();
             services.InjectServices();
@@ -93,27 +92,11 @@ namespace Fatec.Store.User.Api.IoC
             services.AddTransient<FilterHeader>();
         }
 
-        public static void ConfigureSwaggerDoc(this IServiceCollection services)
-        {
-            services.AddSwaggerGen(c =>
-            {
-                var xmlFolderPath = Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Api\Swagger");
-                var absoluteXmlFolderPath = Path.GetFullPath(xmlFolderPath);
-
-                var xmlFiles = Directory.GetFiles(absoluteXmlFolderPath, "*.xml");
-
-                foreach (var xmlFile in xmlFiles)
-                {
-                    c.IncludeXmlComments(xmlFile);
-                }
-            });
-        }
-
         public static void InjectAuthenticationSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
              {
-                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Store.Users.Api", Version = "v1", Description = "Api responsável por gerenciar dados pessoais e de login do usuário" });
+                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fatec.Store.Users.Api", Version = "v1", Description = "Api responsável por gerenciar dados pessoais e de login do usuário" });
 
                  c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
                  {
