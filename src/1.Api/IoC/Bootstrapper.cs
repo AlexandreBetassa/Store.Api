@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Store.Api.Filters.v1;
-using Store.Api.IoC;
 using Store.Application.Commands.v1.Auth.GenerateToken;
 using Store.Application.Commands.v1.Users.CreateUser;
 using Store.Application.Services.v1;

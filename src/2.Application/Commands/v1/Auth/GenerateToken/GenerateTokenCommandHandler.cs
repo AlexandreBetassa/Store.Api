@@ -1,4 +1,6 @@
-﻿namespace Store.Application.Commands.v1.Auth.GenerateToken
+﻿using Store.Domain.Models.v1.Cache;
+
+namespace Store.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {

@@ -1,4 +1,7 @@
-﻿namespace Store.Application.Commands.v1.Auth.PutPassword
+﻿using Newtonsoft.Json;
+using Store.Domain.Models.v1.Cache;
+
+namespace Store.Application.Commands.v1.Auth.PutPassword
 {
     public class PutPasswordCommandHandler : BaseCommandHandler<PatchPasswordCommand, Unit>
     {
