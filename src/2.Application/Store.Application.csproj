@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Store.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <DocumentationFile>D:\Projetos-pessoais\Store\Store.Api\src\Api\Swagger\application.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\3..Domain\Store.Domain.csproj" />
+    <ProjectReference Include="..\4.Data\Store.Data.csproj" />
+    <ProjectReference Include="..\5.CrossCutting\Store.CrossCutting.csproj" />
+  </ItemGroup>
+
+</Project>
