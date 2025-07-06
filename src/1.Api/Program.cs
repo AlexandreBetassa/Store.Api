@@ -9,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.InjectDependencies(builder);
 
 var app = builder.Build();
-DatabaseManagementService.MigrationInitialisation(app);
+//DatabaseManagementService.MigrationInitialisation(app);
 
 app.UseSwagger();
 app.UseSwaggerUI();

@@ -95,7 +95,7 @@ namespace Store.Api.IoC
         {
             services.AddSwaggerGen(c =>
              {
-                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fatec.Store.Users.Api", Version = "v1", Description = "Api responsável por gerenciar dados pessoais e de login do usuário" });
+                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Store.Api", Version = "v1", Description = "Api responsável por gerenciar os pedidos" });
 
                  c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
                  {
