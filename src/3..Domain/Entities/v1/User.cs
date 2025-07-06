@@ -1,6 +1,6 @@
-﻿using Fatec.Store.Framework.Core.Bases.v1.Entities;
-using Store.Domain.Enums.v1;
+﻿using Store.Domain.Enums.v1;
 using Store.Domain.Models.v1.Users;
+using Store.Framework.Core.Bases.v1.Entities;
 
 namespace Store.Domain.Entities.v1
 {

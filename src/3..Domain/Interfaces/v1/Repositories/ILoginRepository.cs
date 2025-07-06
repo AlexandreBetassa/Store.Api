@@ -1,5 +1,5 @@
-﻿using Fatec.Store.Framework.Core.Bases.v1.Interfaces;
-using Store.Domain.Entities.v1;
+﻿using Store.Domain.Entities.v1;
+using Store.Framework.Core.Bases.v1.Interfaces;
 
 namespace Store.Domain.Interfaces.v1.Repositories
 {

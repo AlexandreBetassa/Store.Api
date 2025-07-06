@@ -1,5 +1,4 @@
 ﻿global using AutoMapper;
-global using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
 global using FluentValidation;
 global using MediatR;
 global using Microsoft.AspNetCore.Http;
@@ -15,3 +14,4 @@ global using System.Net;
 global using System.Security.Claims;
 global using System.Text;
 global using UserAccount = Store.Domain.Entities.v1.User;
+global using Store.Framework.Core.Bases.v1.CommandHandler;

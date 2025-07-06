@@ -1,5 +1,4 @@
 using Store.Api.IoC;
-using Store.Application.Services.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 
