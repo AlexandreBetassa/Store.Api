@@ -1,4 +1,4 @@
-﻿namespace Fatec.Store.User.Domain.Models.v1.Users
+﻿namespace Store.Domain.Models.v1.Users
 {
     public class Name
     {

@@ -1,8 +1,8 @@
 ﻿using Fatec.Store.Framework.Core.Bases.v1.Entities;
-using Fatec.Store.User.Domain.Enums.v1;
-using Fatec.Store.User.Domain.Models.v1.Users;
+using Store.Domain.Enums.v1;
+using Store.Domain.Models.v1.Users;
 
-namespace Fatec.Store.User.Domain.Entities.v1
+namespace Store.Domain.Entities.v1
 {
     public class User : BaseEntity
     {

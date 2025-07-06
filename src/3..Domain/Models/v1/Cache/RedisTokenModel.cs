@@ -1,4 +1,4 @@
-﻿namespace Fatec.Store.User.Domain.Models.v1.Cache
+﻿namespace Store.Domain.Models.v1.Cache
 {
     public class RedisTokenModel
     {

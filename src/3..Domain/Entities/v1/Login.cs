@@ -1,7 +1,7 @@
 ﻿using Fatec.Store.Framework.Core.Bases.v1.Entities;
 using System.Text.Json.Serialization;
 
-namespace Fatec.Store.User.Domain.Entities.v1
+namespace Store.Domain.Entities.v1
 {
     public class Login : BaseEntity
     {
