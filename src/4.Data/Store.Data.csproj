@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Fatec.Store.User.Domain.csproj" />
+    <ProjectReference Include="..\Domain\Store.Domain.csproj" />
   </ItemGroup>
 
 </Project>
