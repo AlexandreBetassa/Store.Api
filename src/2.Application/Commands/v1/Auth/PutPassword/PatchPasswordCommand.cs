@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Store.Application.Commands.v1.Auth.PutPassword
+﻿namespace Store.Application.Commands.v1.Auth.PutPassword
 {
     public class PatchPasswordCommand : IRequest<Unit>
     {

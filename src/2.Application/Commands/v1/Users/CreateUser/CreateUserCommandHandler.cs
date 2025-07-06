@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Logging;
-using UserAccount = Store.Domain.Entities.v1.User;
-
-namespace Store.Application.Commands.v1.Users.CreateUser
+﻿namespace Store.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {

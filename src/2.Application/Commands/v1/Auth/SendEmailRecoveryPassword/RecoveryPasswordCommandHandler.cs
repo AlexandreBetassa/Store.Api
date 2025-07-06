@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Logging;
-using Store.Application.Enums.v1;
-using Store.Application.Shared.Extensions;
+﻿using Store.Application.Enums.v1;
+using Store.CrossCutting.Configurations.v1.Models;
+using Store.Domain.Models.v1.Cache;
 
 namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
 {

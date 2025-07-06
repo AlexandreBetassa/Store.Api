@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Store.Application.Commands.v1.Auth.PutPassword
+﻿namespace Store.Application.Commands.v1.Auth.PutPassword
 {
     public class PatchPasswordCommandValidator : AbstractValidator<PatchPasswordCommand>
     {

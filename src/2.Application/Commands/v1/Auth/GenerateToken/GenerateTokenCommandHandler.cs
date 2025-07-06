@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net;
-using System.Security.Claims;
-using System.Text;
-using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
-
-namespace Store.Application.Commands.v1.Auth.GenerateToken
+﻿namespace Store.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {

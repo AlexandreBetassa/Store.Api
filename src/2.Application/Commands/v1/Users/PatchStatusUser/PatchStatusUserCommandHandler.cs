@@ -1,12 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Logging;
-using System.Net;
-
-namespace Store.Application.Commands.v1.Users.PatchStatusUser
+﻿namespace Store.Application.Commands.v1.Users.PatchStatusUser
 {
-    public class PatchStatusUserCommandHandler
-        : BaseCommandHandler<PatchStatusUserCommand, Unit>
+    public class PatchStatusUserCommandHandler : BaseCommandHandler<PatchStatusUserCommand, Unit>
     {
         private readonly IUserRepository _userRepository;
 

@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
-using System.Net;
-
-namespace Store.Application.Queries.v1.GetUser
+﻿namespace Store.Application.Queries.v1.GetUser
 {
     public class GetUserQueryHandler(
         ILoggerFactory loggerFactory,

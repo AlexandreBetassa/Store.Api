@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Store.Domain.Entities.v1;
+using Store.Domain.Models.v1.Cache;
 
 namespace Store.Application.Services.v1
 {

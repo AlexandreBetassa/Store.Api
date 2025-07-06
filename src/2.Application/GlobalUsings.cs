@@ -1,0 +1,17 @@
+﻿global using AutoMapper;
+global using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.IdentityModel.Tokens;
+global using Store.Application.Shared.Extensions;
+global using Store.CrossCutting.Configurations.v1;
+global using Store.CrossCutting.Exceptions;
+global using Store.Domain.Interfaces.v1.Repositories;
+global using Store.Domain.Interfaces.v1.Services;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Net;
+global using System.Security.Claims;
+global using System.Text;
+global using UserAccount = Store.Domain.Entities.v1.User;

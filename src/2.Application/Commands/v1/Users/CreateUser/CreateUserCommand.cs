@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Store.Domain.Entities.v1;
+using Store.Domain.Enums.v1;
+using Store.Domain.Models.v1.Users;
 
 namespace Store.Application.Commands.v1.Users.CreateUser
 {

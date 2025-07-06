@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
+﻿namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
 {
     public class RecoveryPasswordCommandValidator : AbstractValidator<RecoveryPasswordCommand>
     {

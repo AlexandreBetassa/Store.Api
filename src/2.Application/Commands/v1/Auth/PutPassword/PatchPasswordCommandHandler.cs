@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Logging;
-
-namespace Store.Application.Commands.v1.Auth.PutPassword
+﻿namespace Store.Application.Commands.v1.Auth.PutPassword
 {
     public class PutPasswordCommandHandler : BaseCommandHandler<PatchPasswordCommand, Unit>
     {
