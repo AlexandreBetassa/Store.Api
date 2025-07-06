@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Fatec.Store.Framework.Core.Bases.v1.Repository;
+using Microsoft.EntityFrameworkCore;
 using Store.Data.Context;
+using Store.Domain.Interfaces.v1.Repositories;
 
 namespace Store.Data.Repositories.v1
 {
