@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Data", "4.Data", "{2F1468
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Data", "src\4.Data\Store.Data.csproj", "{E7316173-23EF-4A3D-8EB4-5C51B6F964D3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.CrossCutting", "5.CrossCutting", "{6B92E88F-FA75-4D3E-9B99-DC4D6BA6D4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.CrossCutting", "src\5.CrossCutting\Store.CrossCutting.csproj", "{A3789D32-EAF9-3EC9-8FB3-746150CBADD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{E7316173-23EF-4A3D-8EB4-5C51B6F964D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7316173-23EF-4A3D-8EB4-5C51B6F964D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7316173-23EF-4A3D-8EB4-5C51B6F964D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3789D32-EAF9-3EC9-8FB3-746150CBADD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3789D32-EAF9-3EC9-8FB3-746150CBADD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3789D32-EAF9-3EC9-8FB3-746150CBADD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3789D32-EAF9-3EC9-8FB3-746150CBADD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{FCDD09A8-EFCA-5D95-CD0E-795560B29404} = {3B43FE41-AF60-405B-89B7-B9450582D816}
 		{BC574321-E22B-F020-2E6C-EAD9F86B17F3} = {AC82CFAE-1094-4B82-BA56-BC83DF26C9CF}
 		{E7316173-23EF-4A3D-8EB4-5C51B6F964D3} = {2F1468C9-88BE-4A7C-B362-A63EE5222A41}
+		{A3789D32-EAF9-3EC9-8FB3-746150CBADD9} = {6B92E88F-FA75-4D3E-9B99-DC4D6BA6D4E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {811D7E19-83B9-4EDC-B5BE-CE7AA80077E0}

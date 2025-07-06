@@ -1,4 +1,4 @@
-﻿namespace Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1.Models
+﻿namespace Store.CrossCutting.Configurations.v1.Models
 {
     public class JwtConfiguration
     {
