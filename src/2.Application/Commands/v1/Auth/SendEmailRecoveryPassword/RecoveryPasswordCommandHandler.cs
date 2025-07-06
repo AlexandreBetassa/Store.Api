@@ -1,6 +1,7 @@
 ﻿using Store.Application.Enums.v1;
 using Store.CrossCutting.Configurations.v1.Models;
 using Store.Domain.Models.v1.Cache;
+using Store.Framework.Core.v1.Bases.CommandHandler;
 
 namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
 {
@@ -14,7 +15,7 @@ namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
         private readonly string _userEmail;
 
         public RecoveryPasswordCommandHandler(
-        AppsettingsConfigurations appsettingsConfigurations,
+        Appsettings appsettingsConfigurations,
         ILoggerFactory loggerFactory,
         IMapper mapper,
         IHttpContextAccessor httpContext,

@@ -1,4 +1,6 @@
-﻿namespace Store.Application.Commands.v1.Users.CreateUser
+﻿using Store.Framework.Core.v1.Bases.CommandHandler;
+
+namespace Store.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {

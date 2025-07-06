@@ -1,4 +1,4 @@
-﻿using Store.Framework.Core.Bases.v1.Entities;
+﻿using Store.Framework.Core.v1.Bases.Entities;
 using System.Text.Json.Serialization;
 
 namespace Store.Domain.Entities.v1

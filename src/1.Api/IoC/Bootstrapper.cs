@@ -1,138 +1,47 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Store.Api.Filters.v1;
+﻿using Store.Api.Filters.v1;
 using Store.Application.Commands.v1.Auth.GenerateToken;
 using Store.Application.Commands.v1.Users.CreateUser;
 using Store.Application.Services.v1;
-using Store.CrossCutting.Configurations.v1;
 using Store.Data.Context;
 using Store.Data.Repositories.v1;
 using Store.Domain.Interfaces.v1.Repositories;
 using Store.Domain.Interfaces.v1.Services;
-using System.Text;
+using Store.Framework.Core.v1.IoC;
 
 namespace Store.Api.IoC
 {
-    public static class Bootstrapper
+    public class Bootstrapper(WebApplicationBuilder builder) : BaseBootstrapper(builder)
     {
-        public static void InjectDependencies(this IServiceCollection services, WebApplicationBuilder builder)
+        public void InjectDependencies()
         {
-            var appSettingsConfigurations = services.AddConfigurations(builder);
-
-            services.InjectAuthenticationSwagger();
-            services.InjectContext(appSettingsConfigurations);
-            services.InjectRepositories();
-            services.InjectServices();
-            services.InjectFilters();
-            services.InjectMediator();
-            services.InjectAutoMapper();
-            services.AddHttpContextAccessor();
-            services.ConfigureAuthentication(appSettingsConfigurations);
-            services.InjectRedis(appSettingsConfigurations);
+            InjectAuthenticationSwagger(title: "Store.Api", version: "v1", description: "Api responsável pelo gerenciamento de pedidos.");
+            InjectServices();
+            InjectRepositories();
+            InjectContext<UserDbContext>();
+            InjectMediatorFromAssembly(typeof(GenerateTokenCommandHandler));
+            InjectAutoMapperFromAssembly(typeof(CreateUserCommandProfile).Assembly);
+            InjectHttpContextAccessor();
+            ConfigureAuthentication();
+            InjectRedis();
+            InjectFilters();
         }
 
-        private static void InjectRedis(this IServiceCollection services, AppsettingsConfigurations appSettingsConfigurations) =>
-           services.AddStackExchangeRedisCache(options => options.Configuration = appSettingsConfigurations.RedisConfiguration.Server);
-
-        private static void ConfigureAuthentication(this IServiceCollection services, AppsettingsConfigurations appSettingsConfigurations)
+        private void InjectServices()
         {
-            services.AddAuthentication(authOptions =>
-            {
-                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(jwtOptions =>
-            {
-                jwtOptions.RequireHttpsMetadata = false;
-                jwtOptions.SaveToken = false;
-                jwtOptions.TokenValidationParameters = new TokenValidationParameters
-                {
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettingsConfigurations.JwtConfiguration!.SecretJwtKey)),
-                    ValidIssuer = appSettingsConfigurations.JwtConfiguration.Issuer,
-                    ValidAudience = appSettingsConfigurations.JwtConfiguration.Audience,
-                    ValidateIssuer = true,
-                    ValidateAudience = true
-                };
-            });
-
-            services.AddAuthorizationBuilder()
-              .AddPolicy(nameof(AccessPoliciesEnum.Write),
-                policy => policy.RequireRole(appSettingsConfigurations.JwtConfiguration!.WriteRoles))
-             .AddPolicy(nameof(AccessPoliciesEnum.Read),
-                policy => policy.RequireRole(appSettingsConfigurations.JwtConfiguration!.ReadRoles));
+            Services.AddTransient<IEmailService, EmailService>();
+            Services.AddTransient<IRedisService, RedisService>();
+            Services.AddTransient(typeof(IPasswordServices), typeof(PasswordService));
         }
 
-        private static void InjectAutoMapper(this IServiceCollection services) =>
-            services.AddAutoMapper(opt => opt.AddMaps(typeof(CreateUserCommand).Assembly));
-
-        private static void InjectMediator(this IServiceCollection services) =>
-            services.AddMediatR(new MediatRServiceConfiguration().RegisterServicesFromAssemblyContaining(typeof(GenerateTokenCommandHandler)));
-
-        private static void InjectServices(this IServiceCollection services)
+        private void InjectRepositories()
         {
-            services.AddTransient<IEmailService, EmailService>();
-            services.AddTransient<IRedisService, RedisService>();
-            services.AddTransient(typeof(IPasswordServices), typeof(PasswordService));
+            Services.AddTransient<IUserRepository, UserRepository>();
+            Services.AddTransient<ILoginRepository, LoginRepository>();
         }
 
-        private static void InjectContext(this IServiceCollection services, AppsettingsConfigurations appSettingsConfigurations) =>
-            services.AddDbContext<UserDbContext>(options => options.UseSqlServer(appSettingsConfigurations!.Database));
-
-        private static void InjectRepositories(this IServiceCollection services)
+        private void InjectFilters()
         {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ILoginRepository, LoginRepository>();
-        }
-
-        private static void InjectFilters(this IServiceCollection services)
-        {
-            services.AddTransient<FilterHeader>();
-        }
-
-        public static void InjectAuthenticationSwagger(this IServiceCollection services)
-        {
-            services.AddSwaggerGen(c =>
-             {
-                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Store.Api", Version = "v1", Description = "Api responsável por gerenciar os pedidos" });
-
-                 c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
-                 {
-                     Description =
-                         "JWT Authorization Header - Utilizado com Bearer Authentication.\r\n\r\n" +
-                         "Digite seu token no campo abaixo.\r\n\r\n" +
-                         "Exemplo (informar apenas o token): '12345abcdef'",
-                     Name = "Authorization",
-                     In = ParameterLocation.Header,
-                     Type = SecuritySchemeType.Http,
-                     Scheme = "bearer",
-                     BearerFormat = "JWT"
-                 });
-
-                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                 {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                 });
-             });
-        }
-
-        public static AppsettingsConfigurations? AddConfigurations(this IServiceCollection services, WebApplicationBuilder builder)
-        {
-            services.Configure<AppsettingsConfigurations>(builder.Configuration.GetSection(nameof(AppsettingsConfigurations)));
-            services.AddTransient(sp => sp.GetRequiredService<IOptions<AppsettingsConfigurations>>().Value);
-
-            return services?.BuildServiceProvider()?.GetRequiredService<AppsettingsConfigurations>();
+            Services.AddTransient<FilterHeader>();
         }
     }
 }

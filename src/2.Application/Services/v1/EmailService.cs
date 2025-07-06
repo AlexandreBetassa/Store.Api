@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 namespace Store.Application.Services.v1
 {
-    public class EmailService(AppsettingsConfigurations appsettingsConfigurations) : IEmailService
+    public class EmailService(Appsettings appsettingsConfigurations) : IEmailService
     {
         private readonly EmailConfiguration _emailConfiguration = appsettingsConfigurations.EmailConfiguration;
 

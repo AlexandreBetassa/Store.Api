@@ -1,4 +1,6 @@
-﻿namespace Store.Application.Queries.v1.GetUser
+﻿using Store.Framework.Core.v1.Bases.CommandHandler;
+
+namespace Store.Application.Queries.v1.GetUser
 {
     public class GetUserQueryHandler(
         ILoggerFactory loggerFactory,

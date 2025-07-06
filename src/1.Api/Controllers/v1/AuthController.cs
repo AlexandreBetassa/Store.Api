@@ -1,6 +1,7 @@
 ﻿using Store.Application.Commands.v1.Auth.GenerateToken;
 using Store.Application.Commands.v1.Auth.PutPassword;
 using Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword;
+using Store.Framework.Core.v1.Bases.Controllers;
 
 namespace Store.Api.Controllers.v1
 {

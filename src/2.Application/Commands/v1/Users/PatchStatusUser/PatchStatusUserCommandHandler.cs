@@ -1,4 +1,6 @@
-﻿namespace Store.Application.Commands.v1.Users.PatchStatusUser
+﻿using Store.Framework.Core.v1.Bases.CommandHandler;
+
+namespace Store.Application.Commands.v1.Users.PatchStatusUser
 {
     public class PatchStatusUserCommandHandler : BaseCommandHandler<PatchStatusUserCommand, Unit>
     {

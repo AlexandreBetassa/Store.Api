@@ -1,6 +1,6 @@
 ﻿using Store.Domain.Enums.v1;
 using Store.Domain.Models.v1.Users;
-using Store.Framework.Core.Bases.v1.Entities;
+using Store.Framework.Core.v1.Bases.Entities;
 
 namespace Store.Domain.Entities.v1
 {

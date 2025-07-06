@@ -3,6 +3,8 @@ using Store.Api.Filters.v1;
 using Store.Application.Commands.v1.Users.CreateUser;
 using Store.Application.Commands.v1.Users.PatchStatusUser;
 using Store.Application.Queries.v1.GetUser;
+using Store.Framework.Core.v1.Bases.Controllers;
+using Store.Framework.Core.v1.Enums;
 
 namespace Store.Api.Controllers.v1
 {

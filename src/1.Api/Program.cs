@@ -1,13 +1,14 @@
 using Store.Api.IoC;
+using Store.CrossCutting.Configurations.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.InjectDependencies(builder);
-
+Bootstrapper.CreateBootstrapper<Bootstrapper, Appsettings>(builder).InjectDependencies();
 var app = builder.Build();
+
 //DatabaseManagementService.MigrationInitialisation(app);
 
 app.UseSwagger();

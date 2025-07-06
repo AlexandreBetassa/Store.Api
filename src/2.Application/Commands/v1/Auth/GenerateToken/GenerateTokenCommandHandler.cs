@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Models.v1.Cache;
+using Store.Framework.Core.v1.Bases.CommandHandler;
 
 namespace Store.Application.Commands.v1.Auth.GenerateToken
 {
@@ -7,7 +8,7 @@ namespace Store.Application.Commands.v1.Auth.GenerateToken
         private readonly IUserRepository _userRepository;
         private readonly IRedisService _redisService;
         private readonly IPasswordServices _passwordServices;
-        private readonly AppsettingsConfigurations _appsettingsConfiguration;
+        private readonly Appsettings _appsettingsConfiguration;
 
         private const string _key = "token_";
 
@@ -17,7 +18,7 @@ namespace Store.Application.Commands.v1.Auth.GenerateToken
             IUserRepository userRepository,
             IRedisService redisService,
             IPasswordServices passwordServices,
-            AppsettingsConfigurations appsettingsConfigurations,
+            Appsettings appsettingsConfigurations,
             IHttpContextAccessor contextAccessor)
                 : base(loggerFactory.CreateLogger<GenerateTokenCommandHandler>(), mapper, contextAccessor)
         {
