@@ -1,8 +1,8 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
 using Store.Api.Filters.v1;
-using System.Net;
+using Store.Application.Commands.v1.Users.CreateUser;
+using Store.Application.Commands.v1.Users.PatchStatusUser;
+using Store.Application.Queries.v1.GetUser;
 
 namespace Store.Api.Controllers.v1
 {

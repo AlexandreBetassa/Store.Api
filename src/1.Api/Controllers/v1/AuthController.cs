@@ -1,6 +1,6 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
+﻿using Store.Application.Commands.v1.Auth.GenerateToken;
+using Store.Application.Commands.v1.Auth.PutPassword;
+using Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword;
 
 namespace Store.Api.Controllers.v1
 {

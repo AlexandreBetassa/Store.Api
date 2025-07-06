@@ -5,6 +5,14 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Store.Api.Filters.v1;
 using Store.Api.IoC;
+using Store.Application.Commands.v1.Auth.GenerateToken;
+using Store.Application.Commands.v1.Users.CreateUser;
+using Store.Application.Services.v1;
+using Store.CrossCutting.Configurations.v1;
+using Store.Data.Context;
+using Store.Data.Repositories.v1;
+using Store.Domain.Interfaces.v1.Repositories;
+using Store.Domain.Interfaces.v1.Services;
 using System.Text;
 
 namespace Store.Api.IoC
