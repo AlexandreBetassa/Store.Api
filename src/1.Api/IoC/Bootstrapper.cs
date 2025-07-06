@@ -1,21 +1,13 @@
-﻿using Fatec.Store.Framework.Core.Enums;
-using Fatec.Store.User.Api.Filters.v1;
-using Fatec.Store.User.Application.Commands.v1.Auth.GenerateToken;
-using Fatec.Store.User.Application.Commands.v1.Users.CreateUser;
-using Fatec.Store.User.Application.Services.v1;
-using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
-using Fatec.Store.User.Domain.Interfaces.v1.Services;
-using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1;
-using Fatec.Store.User.Infrastructure.Data.Context;
-using Fatec.Store.User.Infrastructure.Data.Repositories.v1;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Store.Api.Filters.v1;
+using Store.Api.IoC;
 using System.Text;
 
-namespace Fatec.Store.User.Api.IoC
+namespace Store.Api.IoC
 {
     public static class Bootstrapper
     {

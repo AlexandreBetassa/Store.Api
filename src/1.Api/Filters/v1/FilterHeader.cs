@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace Fatec.Store.User.Api.Filters.v1
+namespace Store.Api.Filters.v1
 {
     public class FilterHeader : ActionFilterAttribute
     {
