@@ -12,16 +12,13 @@ namespace Store.Api.IoC
 {
     public class Bootstrapper(WebApplicationBuilder builder) : BaseBootstrapper(builder)
     {
-        public void InjectDependencies()
+        public override void InjectDependencies()
         {
-            InjectAuthenticationSwagger(title: "Store.Api", version: "v1", description: "Api responsável pelo gerenciamento de pedidos.");
             InjectServices();
             InjectRepositories();
             InjectContext<UserDbContext>();
             InjectMediatorFromAssembly(typeof(GenerateTokenCommandHandler));
             InjectAutoMapperFromAssembly(typeof(CreateUserCommandProfile).Assembly);
-            InjectHttpContextAccessor();
-            ConfigureAuthentication();
             InjectRedis();
             InjectFilters();
         }

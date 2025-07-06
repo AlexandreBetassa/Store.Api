@@ -30,7 +30,6 @@ namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
             _emailTemplates = appsettingsConfigurations.EmailConfiguration.EmailTemplates;
         }
 
-
         public override async Task<Unit> Handle(RecoveryPasswordCommand request, CancellationToken cancellationToken)
         {
             try
