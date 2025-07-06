@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
-using Fatec.Store.User.Application.Shared.Extensions;
-using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
-using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
-namespace Fatec.Store.User.Application.Commands.v1.Users.PatchStatusUser
+namespace Store.Application.Commands.v1.Users.PatchStatusUser
 {
     public class PatchStatusUserCommandHandler
         : BaseCommandHandler<PatchStatusUserCommand, Unit>

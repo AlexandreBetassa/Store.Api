@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
-using Fatec.Store.User.Application.Shared.Extensions;
-using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
-using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
-namespace Fatec.Store.User.Application.Queries.v1.GetUser
+namespace Store.Application.Queries.v1.GetUser
 {
     public class GetUserQueryHandler(
         ILoggerFactory loggerFactory,

@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
-using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
-using Fatec.Store.User.Application.Enums.v1;
-using Fatec.Store.User.Application.Shared.Extensions;
-using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
-using Fatec.Store.User.Domain.Interfaces.v1.Services;
-using Fatec.Store.User.Domain.Models.v1.Cache;
-using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1;
-using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1.Models;
-using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Store.Application.Enums.v1;
+using Store.Application.Shared.Extensions;
 
-namespace Fatec.Store.User.Application.Commands.v1.Auth.SendEmailRecoveryPassword
+namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
 {
     public class RecoveryPasswordCommandHandler : BaseCommandHandler<RecoveryPasswordCommand, Unit>
     {

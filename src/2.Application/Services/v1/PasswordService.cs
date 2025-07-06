@@ -1,9 +1,6 @@
-﻿using Fatec.Store.User.Domain.Entities.v1;
-using Fatec.Store.User.Domain.Interfaces.v1.Services;
-using Fatec.Store.User.Domain.Models.v1.Cache;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Fatec.Store.User.Application.Services.v1
+namespace Store.Application.Services.v1
 {
     public class PasswordService : IPasswordServices
     {

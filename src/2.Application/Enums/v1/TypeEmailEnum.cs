@@ -1,4 +1,4 @@
-﻿namespace Fatec.Store.User.Application.Enums.v1
+﻿namespace Store.Application.Enums.v1
 {
     public enum TypeEmailEnum
     {

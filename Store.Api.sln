@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Api", "src\1.Api\Stor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Api", "1.Api", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Application", "src\2.Application\Store.Application.csproj", "{FCDD09A8-EFCA-5D95-CD0E-795560B29404}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Application", "{3B43FE41-AF60-405B-89B7-B9450582D816}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{AEBCF759-A946-85B0-D920-61F8657C7D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEBCF759-A946-85B0-D920-61F8657C7D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEBCF759-A946-85B0-D920-61F8657C7D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCDD09A8-EFCA-5D95-CD0E-795560B29404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDD09A8-EFCA-5D95-CD0E-795560B29404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDD09A8-EFCA-5D95-CD0E-795560B29404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDD09A8-EFCA-5D95-CD0E-795560B29404}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AEBCF759-A946-85B0-D920-61F8657C7D86} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{FCDD09A8-EFCA-5D95-CD0E-795560B29404} = {3B43FE41-AF60-405B-89B7-B9450582D816}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {811D7E19-83B9-4EDC-B5BE-CE7AA80077E0}

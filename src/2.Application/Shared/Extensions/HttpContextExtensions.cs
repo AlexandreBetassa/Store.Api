@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Fatec.Store.User.Application.Shared.Extensions
+﻿namespace Store.Application.Shared.Extensions
 {
     public static class HttpContextExtensions
     {

@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
-using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
-using Fatec.Store.User.Domain.Interfaces.v1.Services;
-using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
+using UserAccount = Store.Domain.Entities.v1.User;
 
-namespace Fatec.Store.User.Application.Commands.v1.Users.CreateUser
+namespace Store.Application.Commands.v1.Users.CreateUser
 {
     public class CreateUserCommandHandler : BaseCommandHandler<CreateUserCommand, Unit>
     {

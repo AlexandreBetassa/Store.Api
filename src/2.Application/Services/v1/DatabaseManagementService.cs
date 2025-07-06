@@ -1,9 +1,6 @@
-﻿using Fatec.Store.User.Infrastructure.Data.Context;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Fatec.Store.User.Application.Services.v1
+namespace Store.Application.Services.v1
 {
     public static class DatabaseManagementService
     {

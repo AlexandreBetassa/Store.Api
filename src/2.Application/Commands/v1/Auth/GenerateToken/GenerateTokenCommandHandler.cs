@@ -1,11 +1,4 @@
 ﻿using AutoMapper;
-using Fatec.Store.Framework.Core.Bases.v1.CommandHandler;
-using Fatec.Store.User.Domain.Interfaces.v1.Repositories;
-using Fatec.Store.User.Domain.Interfaces.v1.Services;
-using Fatec.Store.User.Domain.Models.v1.Cache;
-using Fatec.Store.User.Infrastructure.CrossCutting.Configurations.v1;
-using Fatec.Store.User.Infrastructure.CrossCutting.Exceptions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,7 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using UserAccount = Fatec.Store.User.Domain.Entities.v1.User;
 
-namespace Fatec.Store.User.Application.Commands.v1.Auth.GenerateToken
+namespace Store.Application.Commands.v1.Auth.GenerateToken
 {
     public class GenerateTokenCommandHandler : BaseCommandHandler<GenerateTokenCommand, GenerateTokenResponse>
     {
