@@ -1,7 +1,7 @@
-﻿using Store.CrossCutting.Configurations.v1.Models;
-using Store.Framework.Core.v1.Bases.Models.CrossCutting;
+﻿using Project.Framework.Core.v1.Bases.Models.CrossCutting;
+using Store.CrossCutting.Configurations.v1.Models;
 
-namespace Store.CrossCutting.Configurations.v1
+namespace Project.CrossCutting.Configurations.v1
 {
     public class Appsettings : AppsettingsConfigurations
     {

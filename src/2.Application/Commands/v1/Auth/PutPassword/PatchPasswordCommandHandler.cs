@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Project.Framework.Core.v1.Bases.CommandHandler;
 using Store.Domain.Models.v1.Cache;
-using Store.Framework.Core.v1.Bases.CommandHandler;
 
 namespace Store.Application.Commands.v1.Auth.PutPassword
 {

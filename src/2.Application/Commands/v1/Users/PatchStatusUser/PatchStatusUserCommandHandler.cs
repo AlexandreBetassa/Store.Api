@@ -1,4 +1,5 @@
-﻿using Store.Framework.Core.v1.Bases.CommandHandler;
+﻿using Project.CrossCutting.Exceptions;
+using Project.Framework.Core.v1.Bases.CommandHandler;
 
 namespace Store.Application.Commands.v1.Users.PatchStatusUser
 {

@@ -1,4 +1,4 @@
-﻿using Store.Framework.Core.v1.Bases.Interfaces;
+﻿using Project.Framework.Core.v1.Bases.Interfaces;
 
 namespace Store.Domain.Interfaces.v1.Repositories
 {

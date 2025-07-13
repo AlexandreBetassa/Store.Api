@@ -1,7 +1,7 @@
-﻿using Store.Framework.Core.v1.Bases.Exceptions;
+﻿using Project.Framework.Core.v1.Bases.Exceptions;
 using System.Net;
 
-namespace Store.CrossCutting.Exceptions
+namespace Project.CrossCutting.Exceptions
 {
     public class InvalidUserException(HttpStatusCode statusCode, string message) : CustomException(statusCode, message)
     {

@@ -1,4 +1,5 @@
-﻿using Store.Api.Filters.v1;
+﻿using Project.Framework.Core.v1.IoC;
+using Store.Api.Filters.v1;
 using Store.Application.Commands.v1.Auth.GenerateToken;
 using Store.Application.Commands.v1.Users.CreateUser;
 using Store.Application.Services.v1;
@@ -6,7 +7,6 @@ using Store.Data.Context;
 using Store.Data.Repositories.v1;
 using Store.Domain.Interfaces.v1.Repositories;
 using Store.Domain.Interfaces.v1.Services;
-using Store.Framework.Core.v1.IoC;
 
 namespace Store.Api.IoC
 {

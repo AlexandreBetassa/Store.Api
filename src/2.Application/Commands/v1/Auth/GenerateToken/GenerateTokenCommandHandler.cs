@@ -1,5 +1,7 @@
-﻿using Store.Domain.Models.v1.Cache;
-using Store.Framework.Core.v1.Bases.CommandHandler;
+﻿using Project.CrossCutting.Configurations.v1;
+using Project.CrossCutting.Exceptions;
+using Project.Framework.Core.v1.Bases.CommandHandler;
+using Store.Domain.Models.v1.Cache;
 
 namespace Store.Application.Commands.v1.Auth.GenerateToken
 {

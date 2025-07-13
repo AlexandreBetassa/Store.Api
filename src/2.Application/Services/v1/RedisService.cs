@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Project.CrossCutting.Configurations.v1;
 using System.Text.Json;
 
 namespace Store.Application.Services.v1

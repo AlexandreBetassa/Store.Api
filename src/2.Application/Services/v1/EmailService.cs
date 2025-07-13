@@ -1,4 +1,5 @@
-﻿using Store.CrossCutting.Configurations.v1.Models;
+﻿using Project.CrossCutting.Configurations.v1;
+using Store.CrossCutting.Configurations.v1.Models;
 using System.Net.Mail;
 
 namespace Store.Application.Services.v1

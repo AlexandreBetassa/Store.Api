@@ -1,5 +1,5 @@
+using Project.CrossCutting.Configurations.v1;
 using Store.Api.IoC;
-using Store.CrossCutting.Configurations.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 Bootstrapper.CreateBootstrapper<Bootstrapper, Appsettings>(builder).InjectDependencies();
@@ -19,7 +19,6 @@ app.UseCors(options =>
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

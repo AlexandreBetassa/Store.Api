@@ -1,4 +1,4 @@
-﻿using Store.Framework.Core.v1.Bases.CommandHandler;
+﻿using Project.Framework.Core.v1.Bases.CommandHandler;
 
 namespace Store.Application.Commands.v1.Users.CreateUser
 {
