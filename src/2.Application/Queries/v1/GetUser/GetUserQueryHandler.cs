@@ -19,7 +19,7 @@ namespace Store.Application.Queries.v1.GetUser
                 var isValidId = HttpContext.GetUserId();
 
                 if (string.IsNullOrEmpty(isValidId))
-                    throw new InvalidUserException(HttpStatusCode.BadRequest, "Dados do usuário inválido.");
+                    throw new InvalidUserException();
 
                 Logger.LogInformation("Iniciando metodo {handler}.{method}", nameof(GetUserQueryHandler), nameof(Handle));
 

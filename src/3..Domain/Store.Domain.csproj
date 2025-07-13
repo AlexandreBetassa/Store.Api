@@ -5,6 +5,8 @@
     <RootNamespace>Store.Domain</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>/bin/Store.Domain.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

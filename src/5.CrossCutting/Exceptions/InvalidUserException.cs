@@ -3,7 +3,8 @@ using System.Net;
 
 namespace Project.CrossCutting.Exceptions
 {
-    public class InvalidUserException(HttpStatusCode statusCode, string message) : CustomException(statusCode, message)
+    public class InvalidUserException(string message = "Dados do usuário inválido.", HttpStatusCode statusCode = HttpStatusCode.BadRequest) 
+        : CustomException(statusCode, message)
     {
     }
 }

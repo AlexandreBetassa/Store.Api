@@ -5,8 +5,8 @@
     <RootNamespace>Store.Application</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
-    <DocumentationFile>D:\Projetos-pessoais\Store\Store.Api\src\Api\Swagger\application.xml</DocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>/bin/Store.Application.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

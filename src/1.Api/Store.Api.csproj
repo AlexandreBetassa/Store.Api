@@ -8,8 +8,8 @@
     <UserSecretsId>d49df44a-aefa-4d78-9b2d-8a581bee30fc</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
-    <DocumentationFile>D:\Projetos-pessoais\Store\Store.Api\src\Api\Swagger\api.xml</DocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>/bin/Store.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

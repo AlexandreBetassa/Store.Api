@@ -3,7 +3,7 @@
     public class GenerateTokenCommand : IRequest<GenerateTokenResponse>
     {
         /// <summary>
-        /// Email ou username.
+        /// Email ou nome de usuário.
         /// </summary>
         public string Email { get; set; }
 

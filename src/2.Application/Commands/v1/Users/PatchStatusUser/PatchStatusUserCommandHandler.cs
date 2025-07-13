@@ -24,10 +24,10 @@ namespace Store.Application.Commands.v1.Users.PatchStatusUser
                 var userId = HttpContext.GetUserId();
 
                 if (string.IsNullOrEmpty(userId))
-                    throw new InvalidUserException(HttpStatusCode.BadRequest, "Dados do usuário inválido.");
+                    throw new InvalidUserException();
 
                 var user = await _userRepository.GetByIdAsync(userId)
-                    ?? throw new Exception("Usuário não localizado!!!");
+                    ?? throw new NotFoundException("Usuário não localizado!!!");
 
                 user.ChangeStatus();
 

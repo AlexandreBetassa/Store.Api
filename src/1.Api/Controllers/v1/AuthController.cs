@@ -1,35 +1,70 @@
-﻿using Project.Framework.Core.v1.Bases.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
 using Store.Application.Commands.v1.Auth.GenerateToken;
 using Store.Application.Commands.v1.Auth.PutPassword;
 using Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword;
 
 namespace Store.Api.Controllers.v1
 {
+    /// <summary>
+    /// The authentication controller.
+    /// </summary>
+    /// <param name="mediator"></param>
     [Route("api/v1/authentication")]
     [ApiController]
     public class AuthController(IMediator mediator) : BaseController<AuthController>(mediator)
     {
         /// <summary>
-        /// Generate Token v1.
-        /// Responsável por gerar o token do usuário cadastrado.
+        /// Generate token v1.
         /// </summary>
-        /// <param name="request">Dados de login.</param>
-        /// <returns>O token válido.</returns>
+        /// <param name="request">Os dados de login.</param>
+        /// <remarks>
+        /// <b>Sobre:</b>
+        /// <p>Responsável por gerar um token.</p>
+        /// <b>Requisitos:</b>
+        /// <p>Usuário estar cadastrado no sistema.</p>
+        /// </remarks>
         [HttpPost]
         [ProducesResponseType(typeof(GenerateTokenResponse), (int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> GenerateToken([FromBody] GenerateTokenCommand request) =>
+        public async Task<IActionResult> GenerateTokenAsync([FromBody] GenerateTokenCommand request) =>
              await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.Created);
 
+        /// <summary>
+        /// Recovery password v1.
+        /// </summary>
+        /// <param name="request">Os dados para recuperação de senha.</param>
+        /// <remarks>
+        /// <b>Sobre:</b>
+        /// <p>Responsável por recuperação de senha.</p>
+        /// <b>Requisitos:</b>
+        /// <p>Usuário estar cadastrado no sistema.</p>
+        /// </remarks>
         [HttpPost("recovery")]
-        public async Task<IActionResult> RecoveryPassword([FromBody] RecoveryPasswordCommand request)
+        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
+        [AllowAnonymous]
+        public async Task<IActionResult> RecoveryPasswordAsync([FromBody] RecoveryPasswordCommand request)
         {
             return await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.Created);
         }
 
+        /// <summary>
+        /// Patch password v1.
+        /// </summary>
+        /// <param name="request">Os dados para alteração de senha.</param>
+        /// <remarks>
+        /// <b>Sobre:</b>
+        /// <p>Responsável por alterar a senha.</p>
+        /// <b>Requisitos:</b>
+        /// <p>Usuário estar cadastrado no sistema.</p>
+        /// </remarks>
         [HttpPatch("password")]
-        public async Task<IActionResult> PatchPassword([FromBody] PatchPasswordCommand request)
+        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
+        [AllowAnonymous]
+        public async Task<IActionResult> PatchPasswordAsync([FromBody] PatchPasswordCommand request)
         {
             return await ExecuteAsync(async () => await Mediator.Send(request), HttpStatusCode.NoContent);
         }
