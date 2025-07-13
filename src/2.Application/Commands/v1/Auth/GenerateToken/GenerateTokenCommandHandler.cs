@@ -1,4 +1,5 @@
-﻿using Project.CrossCutting.Configurations.v1;
+﻿using Microsoft.Extensions.Options;
+using Project.CrossCutting.Configurations.v1;
 using Project.CrossCutting.Exceptions;
 using Project.Framework.Core.v1.Bases.CommandHandler;
 using Store.Domain.Models.v1.Cache;
@@ -12,22 +13,20 @@ namespace Store.Application.Commands.v1.Auth.GenerateToken
         private readonly IPasswordServices _passwordServices;
         private readonly Appsettings _appsettingsConfiguration;
 
-        private const string _key = "token_";
-
         public GenerateTokenCommandHandler(
             ILoggerFactory loggerFactory,
             IMapper mapper,
             IUserRepository userRepository,
             IRedisService redisService,
             IPasswordServices passwordServices,
-            Appsettings appsettingsConfigurations,
+            IOptions<Appsettings> appsettingsConfigurations,
             IHttpContextAccessor contextAccessor)
                 : base(loggerFactory.CreateLogger<GenerateTokenCommandHandler>(), mapper, contextAccessor)
         {
             _userRepository = userRepository;
             _redisService = redisService;
             _passwordServices = passwordServices;
-            _appsettingsConfiguration = appsettingsConfigurations;
+            _appsettingsConfiguration = appsettingsConfigurations.Value;
         }
 
         public override async Task<GenerateTokenResponse> Handle(GenerateTokenCommand request, CancellationToken cancellationToken)

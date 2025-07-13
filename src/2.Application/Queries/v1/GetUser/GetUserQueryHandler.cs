@@ -16,14 +16,14 @@ namespace Store.Application.Queries.v1.GetUser
         {
             try
             {
-                var isValidId = int.TryParse(HttpContext.GetUserId(), out int id);
+                var isValidId = HttpContext.GetUserId();
 
-                if (!isValidId)
+                if (string.IsNullOrEmpty(isValidId))
                     throw new InvalidUserException(HttpStatusCode.BadRequest, "Dados do usuário inválido.");
 
                 Logger.LogInformation("Iniciando metodo {handler}.{method}", nameof(GetUserQueryHandler), nameof(Handle));
 
-                var user = await _userRepository.GetByIdAsync(id);
+                var user = await _userRepository.GetByIdAsync(isValidId);
                 var response = Mapper.Map<GetUserQueryResponse>(user);
 
                 Logger.LogInformation("Fim metodo {handler}.{method}", nameof(GetUserQueryHandler), nameof(Handle));

@@ -1,11 +1,11 @@
-using Project.CrossCutting.Configurations.v1;
 using Store.Api.IoC;
+using Store.Application.Services.v1;
 
 var builder = WebApplication.CreateBuilder(args);
-Bootstrapper.CreateBootstrapper<Bootstrapper, Appsettings>(builder).InjectDependencies();
+Bootstrapper.CreateBootstrapper<Bootstrapper>(builder).InjectDependencies();
 
 var app = builder.Build();
-//DatabaseManagementService.MigrationInitialisation(app);
+DatabaseManagementService.MigrationInitialisation(app);
 
 app.UseSwagger();
 app.UseSwaggerUI();

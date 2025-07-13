@@ -1,12 +1,13 @@
-﻿using Project.CrossCutting.Configurations.v1;
+﻿using Microsoft.Extensions.Options;
+using Project.CrossCutting.Configurations.v1;
 using Store.CrossCutting.Configurations.v1.Models;
 using System.Net.Mail;
 
 namespace Store.Application.Services.v1
 {
-    public class EmailService(Appsettings appsettingsConfigurations) : IEmailService
+    public class EmailService(IOptions<Appsettings> appsettingsConfigurations) : IEmailService
     {
-        private readonly EmailConfiguration _emailConfiguration = appsettingsConfigurations.EmailConfiguration;
+        private readonly EmailConfiguration _emailConfiguration = appsettingsConfigurations.Value.EmailConfiguration;
 
         public async Task SendEmailAsync(string toEmail, string subject, string body)
         {

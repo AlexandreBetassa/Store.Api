@@ -1,13 +1,14 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Options;
 using Project.CrossCutting.Configurations.v1;
 using System.Text.Json;
 
 namespace Store.Application.Services.v1
 {
-    public class RedisService(IDistributedCache cache, Appsettings appsettingsConfiguration) : IRedisService
+    public class RedisService(IDistributedCache cache, IOptions<Appsettings> appsettingsConfiguration) : IRedisService
     {
         private readonly IDistributedCache _cache = cache;
-        private readonly Appsettings _appsettingsConfiguration = appsettingsConfiguration;
+        private readonly Appsettings _appsettingsConfiguration = appsettingsConfiguration.Value;
 
         public async Task CreateAsync(string key, object data, int expirationInMinutes = 15)
         {

@@ -1,4 +1,5 @@
-﻿using Project.Framework.Core.v1.IoC;
+﻿using Project.CrossCutting.Configurations.v1;
+using Project.Framework.Core.v1.IoC;
 using Store.Api.Filters.v1;
 using Store.Application.Commands.v1.Auth.GenerateToken;
 using Store.Application.Commands.v1.Users.CreateUser;
@@ -10,7 +11,7 @@ using Store.Domain.Interfaces.v1.Services;
 
 namespace Store.Api.IoC
 {
-    public class Bootstrapper(WebApplicationBuilder builder) : BaseBootstrapper(builder)
+    public class Bootstrapper(WebApplicationBuilder builder) : BaseBootstrapper<Appsettings>(builder)
     {
         public override void InjectDependencies()
         {
@@ -25,15 +26,15 @@ namespace Store.Api.IoC
 
         private void InjectServices()
         {
-            Services.AddTransient<IEmailService, EmailService>();
-            Services.AddTransient<IRedisService, RedisService>();
-            Services.AddTransient(typeof(IPasswordServices), typeof(PasswordService));
+            Services.AddScoped<IEmailService, EmailService>();
+            Services.AddScoped<IRedisService, RedisService>();
+            Services.AddScoped(typeof(IPasswordServices), typeof(PasswordService));
         }
 
         private void InjectRepositories()
         {
-            Services.AddTransient<IUserRepository, UserRepository>();
-            Services.AddTransient<ILoginRepository, LoginRepository>();
+            Services.AddScoped<IUserRepository, UserRepository>();
+            Services.AddScoped<ILoginRepository, LoginRepository>();
         }
 
         private void InjectFilters()

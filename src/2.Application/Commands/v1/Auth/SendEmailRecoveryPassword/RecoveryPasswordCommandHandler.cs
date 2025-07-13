@@ -1,4 +1,5 @@
-﻿using Project.CrossCutting.Configurations.v1;
+﻿using Microsoft.Extensions.Options;
+using Project.CrossCutting.Configurations.v1;
 using Project.CrossCutting.Exceptions;
 using Project.Framework.Core.v1.Bases.CommandHandler;
 using Store.Application.Enums.v1;
@@ -17,7 +18,7 @@ namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
         private readonly string _userEmail;
 
         public RecoveryPasswordCommandHandler(
-        Appsettings appsettingsConfigurations,
+        IOptions<Appsettings> appsettingsConfigurations,
         ILoggerFactory loggerFactory,
         IMapper mapper,
         IHttpContextAccessor httpContext,
@@ -29,7 +30,7 @@ namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
             _passwordService = passwordServices;
             _emailService = emailService;
             _userEmail = httpContext.GetUserEmail();
-            _emailTemplates = appsettingsConfigurations.EmailConfiguration.EmailTemplates;
+            _emailTemplates = appsettingsConfigurations.Value.EmailConfiguration.EmailTemplates;
         }
 
         public override async Task<Unit> Handle(RecoveryPasswordCommand request, CancellationToken cancellationToken)
@@ -40,7 +41,7 @@ namespace Store.Application.Commands.v1.Auth.SendEmailRecoveryPassword
                     ?? throw new NotFoundException("Usuário não localizado!!!");
 
                 var recoveryCode = GenerateRecoveryCode();
-                await _passwordService.PersistCacheRecoveryPassword(new RecoveryPasswordCache(request.Email, recoveryCode, user.Login.Id));
+                await _passwordService.PersistCacheRecoveryPassword(new RecoveryPasswordCache(request.Email, recoveryCode, user.Login.Id.ToString()));
 
                 var emailTemplate = _emailTemplates.FirstOrDefault(x => x.Type.Equals(nameof(TypeEmailEnum.RecoveryPassword)));
 

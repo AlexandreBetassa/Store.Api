@@ -1,8 +1,8 @@
 ﻿namespace Store.Domain.Models.v1.Cache
 {
-    public class RecoveryPasswordCache(string email, string recoveryCode, int userId)
+    public class RecoveryPasswordCache(string email, string recoveryCode, string userId)
     {
-        public int LoginId { get; set; } = userId;
+        public string LoginId { get; set; } = userId;
 
         public string Email { get; } = email;
 

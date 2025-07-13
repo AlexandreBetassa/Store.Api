@@ -21,18 +21,18 @@ namespace Store.Application.Commands.v1.Users.PatchStatusUser
         {
             try
             {
-                _ = int.TryParse(HttpContext.GetUserId(), out int id);
+                var userId = HttpContext.GetUserId();
 
-                if (id is 0)
+                if (string.IsNullOrEmpty(userId))
                     throw new InvalidUserException(HttpStatusCode.BadRequest, "Dados do usuário inválido.");
 
-                var user = await _userRepository.GetByIdAsync(id)
+                var user = await _userRepository.GetByIdAsync(userId)
                     ?? throw new Exception("Usuário não localizado!!!");
 
                 user.ChangeStatus();
 
 
-                await _userRepository.PatchAsync(id, x => x.SetProperty(x => x.Status, user.Status));
+                await _userRepository.PatchAsync(userId, x => x.SetProperty(x => x.Status, user.Status));
                 await _userRepository.SaveChangesAsync();
 
                 return Unit.Value;

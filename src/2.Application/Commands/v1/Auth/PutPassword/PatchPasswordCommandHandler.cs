@@ -37,7 +37,7 @@ namespace Store.Application.Commands.v1.Auth.PutPassword
                 var login = await _loginRepository.GetByIdAsync(recoveryCache.LoginId);
 
                 var newPassword = _passwordServices.HashPassword(login, request.NewPassword);
-                await _loginRepository.PatchAsync(login.Id, x => x.SetProperty(x => x.Password, newPassword));
+                await _loginRepository.PatchAsync(login.Id.ToString(), x => x.SetProperty(x => x.Password, newPassword));
                 await _passwordServices.DeleteCacheRecoveryPassword(recoveryCache);
 
                 await _loginRepository.SaveChangesAsync();
