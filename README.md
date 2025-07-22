@@ -17,6 +17,7 @@ Após entrega para avaliação da matéria, projeto continua em desenvolvimento 
  - SQLServer
  - Generic Repository
  - CQRS
+ - Redis
 
 ## Em desenvolvimento
 Melhorias no framework utilizado
