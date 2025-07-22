@@ -20,7 +20,7 @@ Após entrega para avaliação da matéria, projeto continua em desenvolvimento 
  - Redis
 
 ## Em desenvolvimento
-Melhorias no framework utilizado
+Melhorias no framework utilizado [Project.Framework.Core](https://github.com/AlexandreBetassa/Project.Framework.Core)
 
 ## Próximos passos
 - Implementação de build de artefato utilizando Github Actions
