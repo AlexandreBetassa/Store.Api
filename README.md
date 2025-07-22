@@ -24,6 +24,7 @@ Melhorias no framework utilizado [Project.Framework.Core](https://github.com/Ale
 
 ## Próximos passos
 - Implementação de build de artefato utilizando Github Actions
+- Alteração do banco de dados de SQLServer para MongoDB
 - Finalização da implementação da autenticação utilizando JWT Bearer
 - Finalização e melhorias do módulo de usuários
 - Desenvolvimento do módulo de compras
